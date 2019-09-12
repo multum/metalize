@@ -1,0 +1,16 @@
+{
+  "extends": ["eslint:recommended", "prettier"],
+  "env": {
+    "mocha": true,
+    "node": true,
+    "es6": true
+  },
+  "parserOptions": { "ecmaVersion": 2018 },
+  "rules": {
+    "prefer-const": ["error", {"destructuring": "all"}],
+    "lines-between-class-members": ["error", "always"],
+    "no-console": ["error", { "allow": ["warn", "error", "info"] }],
+    "strict": ["error", "global"],
+    "curly": "warn"
+  }
+}

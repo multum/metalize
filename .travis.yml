@@ -1,0 +1,10 @@
+dist: trusty
+language: node_js
+node_js:
+  - "9"
+install:
+  - npm install
+  - npm install codecov nyc
+script:
+  - nyc --reporter=lcov npm run test
+  - codecov
