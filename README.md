@@ -1,21 +1,18 @@
-# **metalize**
+# *metalize*
 
 Node.js tool for easy work with database metadata
 
 ![](https://img.shields.io/travis/com/av-dev/metalize.svg?style=flat-square)
 ![](https://img.shields.io/npm/l/metalize.svg?style=flat-square)
 ![](https://img.shields.io/npm/v/metalize.svg?style=flat-square)
-![](https://img.shields.io/codecov/c/github/av-dev/metalize.svg?style=flat-square)
+<!-- ![](https://img.shields.io/codecov/c/github/av-dev/metalize.svg?style=flat-square) -->
 
-## Documentation
+## Getting started with Postgres
 
-You can find the documentation [on the website](https://av-dev.github.io/metalize/#/)
-
-> The documentation is not ready yet
-
-## Getting started
-
-> metalize requires: **[Node.js](https://nodejs.org/)** **v8.10** or more; **[PostgreSQL Core](https://www.postgresql.org/download/)** **v9.2** or more
+**metalize** requires:
+  - **[Node.js](https://nodejs.org)** **v8.10** or more
+  - **[node-postgres](https://github.com/brianc/node-postgres)** **v7.0** or more
+  - **[PostgreSQL Core](https://www.postgresql.org/download)** **v9.2** or more
 
 ```bash
 npm install metalize pg
@@ -55,6 +52,12 @@ console.log(sequences);
 }
 */
 ```
+
+## Documentation
+
+<!-- You can find the documentation [on the website](https://av-dev.github.io/metalize/#/) -->
+
+> The documentation is not ready yet
 
 ## Contributing
 
