@@ -1,4 +1,4 @@
-# _metalize_
+![](https://av-dev.github.io/metalize/logo.svg)
 
 Node.js tool for easy work with database metadata
 
