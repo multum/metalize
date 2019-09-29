@@ -1,16 +1,55 @@
-![](https://av-dev.github.io/metalize/logo.svg)
-
-Node.js tool for easy work with database metadata
-
-![](https://img.shields.io/travis/com/av-dev/metalize.svg?style=flat-square)
-![](https://img.shields.io/npm/l/metalize.svg?style=flat-square)
-![](https://img.shields.io/npm/v/metalize.svg?style=flat-square)
+<br>
+<p align='center'><img src='https://av-dev.github.io/metalize/logo.svg' alt='metalize'></p>
+<br>
+<p align='center'>Node.js tool for easy reading <strong>database metadata</strong></p>
+<p align='center'>
+    <img src='https://img.shields.io/travis/com/av-dev/metalize.svg?style=flat-square' alt='build'>
+    <img src='https://img.shields.io/npm/l/metalize.svg?style=flat-square' alt='license'>
+    <img src='https://img.shields.io/npm/v/metalize.svg?style=flat-square' alt='version'>
+</p>
 
 <!-- ![](https://img.shields.io/codecov/c/github/av-dev/metalize.svg?style=flat-square) -->
 
-## Getting started with Postgres
+## Getting started with MySQL
 
-**metalize** requires:
+#### Requires:
+
+- **[Node.js](https://nodejs.org)** **v8.10** or more
+- **[MySql server](https://dev.mysql.com/downloads/mysql/)** **v5.6** or more
+- **[node-mysql2](https://github.com/sidorares/node-mysql2)**
+
+```bash
+npm install metalize mysql2
+```
+
+```javascript
+const Metalize = require('metalize');
+
+const metalize = new Metalize({
+  dialect: 'mysql',
+  connectionConfig: {
+    host: '127.0.0.1',
+    user: 'root',
+    database: 'mysql',
+    port: 3306,
+  },
+});
+
+const tables = await metalize.read.tables(['mysql.users', 'mysql.events']);
+console.log(tables);
+/**
+{
+  'users': {
+      columns: [ ... ],
+  },
+  'events': { ... }
+}
+*/
+```
+
+## Getting started with PostgreSQL
+
+#### Requires:
 
 - **[Node.js](https://nodejs.org)** **v8.10** or more
 - **[PostgreSQL server](https://www.postgresql.org/download)** **v9.2** or more
@@ -63,49 +102,6 @@ console.log(sequences);
 }
 */
 ```
-
-## Getting started with MySQL
-
-**metalize** requires:
-
-- **[Node.js](https://nodejs.org)** **v8.10** or more
-- **[MySql server](https://dev.mysql.com/downloads/mysql/)** **v5.6** or more
-- **[node-mysql2](https://github.com/sidorares/node-mysql2)**
-
-```bash
-npm install metalize mysql2
-```
-
-```javascript
-const Metalize = require('metalize');
-
-const metalize = new Metalize({
-  dialect: 'mysql',
-  connectionConfig: {
-    host: '127.0.0.1',
-    user: 'root',
-    database: 'mysql',
-    port: 3306,
-  },
-});
-
-const tables = await metalize.read.tables(['mysql.users', 'mysql.events']);
-console.log(tables);
-/**
-{
-  'users': {
-      columns: [ ... ],
-  },
-  'events': { ... }
-}
-*/
-```
-
-## Documentation
-
-<!-- You can find the documentation [on the website](https://av-dev.github.io/metalize/#/) -->
-
-> The documentation is not ready yet
 
 ## Contributing
 
