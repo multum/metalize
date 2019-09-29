@@ -6,9 +6,9 @@
     <img src='https://img.shields.io/travis/com/av-dev/metalize.svg?style=flat-square' alt='build'>
     <img src='https://img.shields.io/npm/l/metalize.svg?style=flat-square' alt='license'>
     <img src='https://img.shields.io/npm/v/metalize.svg?style=flat-square' alt='version'>
+    <img src='https://img.shields.io/codecov/c/github/av-dev/metalize.svg?style=flat-square' alt='coverage'>
 </p>
-
-<!-- ![](https://img.shields.io/codecov/c/github/av-dev/metalize.svg?style=flat-square) -->
+<br>
 
 ## Getting started with MySQL
 
