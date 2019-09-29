@@ -9,6 +9,7 @@ exports.setup = ({ schema, dialect, connectionConfig }) => {
     const metalize = new Metalize({ dialect, connectionConfig });
 
     const _table = schema ? `${schema}.metalize_users` : 'metalize_users';
+    const _childTable = _table + '_child';
     const _sequence = _table + '_seq';
 
     const _query = queries => {
@@ -22,7 +23,20 @@ exports.setup = ({ schema, dialect, connectionConfig }) => {
     before(() => {
       return _query([
         `drop table if exists ${_table};`,
-        `create table ${_table} ( id bigint primary key, name varchar(255), age smallint);`,
+        `drop table if exists ${_childTable};`,
+        `create table ${_childTable} (
+          id bigint primary key,
+          name varchar(255)
+        );`,
+        `create table ${_table} (
+          id bigint primary key,
+          name varchar(255),
+          age smallint,
+          child bigint,
+          foreign key (child) references ${_childTable} (id),
+          unique (name, age)
+        );`,
+        `create index index_name on ${_table} (child);`,
       ]);
     });
 
@@ -34,7 +48,7 @@ exports.setup = ({ schema, dialect, connectionConfig }) => {
       const tables = await metalize.read.tables([_table]);
       const table = tables[_table];
       expect(table.primaryKey).to.exist;
-      expect(table.columns).to.have.lengthOf(3);
+      expect(table.columns).to.have.lengthOf(4);
     });
 
     if (isPostgres) {
