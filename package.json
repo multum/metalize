@@ -32,7 +32,8 @@
     "test": "mocha test/**/index.test.js --no-timeout --exit",
     "eslint": "eslint --max-warnings=0 **/*.js",
     "lint-staged": "lint-staged",
-    "format": "prettier --write **/*.js"
+    "format": "prettier --write **/*.js",
+    "docs::start": "docsify serve docs"
   },
   "license": "MIT",
   "devDependencies": {

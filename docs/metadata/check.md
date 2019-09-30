@@ -1,0 +1,5 @@
+# Check
+
+## condition
+
+- Type: `string`
