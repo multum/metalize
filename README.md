@@ -1,6 +1,5 @@
 <br>
 <p align='center'><img src='https://av-dev.github.io/metalize/logo.svg' alt='metalize'></p>
-<br>
 <p align='center'>Node.js tool for easy reading <strong>database metadata</strong></p>
 <p align='center'>
     <img src='https://img.shields.io/travis/com/av-dev/metalize.svg?style=flat-square' alt='build'>
@@ -10,12 +9,16 @@
 </p>
 <br>
 
+## Documentation
+
+You can find the documentation [on the website](https://av-dev.github.io/metalize/#/)
+
 ## Getting started with MySQL
 
 #### Requires:
 
 - **[Node.js](https://nodejs.org)** **v8.10** or more
-- **[MySql server](https://dev.mysql.com/downloads/mysql/)** **v5.6** or more
+- **[MySQL server](https://dev.mysql.com/downloads/mysql/)** **v5.6** or more
 - **[node-mysql2](https://github.com/sidorares/node-mysql2)**
 
 ```bash
@@ -30,19 +33,23 @@ const metalize = new Metalize({
   connectionConfig: {
     host: '127.0.0.1',
     user: 'root',
-    database: 'mysql',
+    database: 'public',
     port: 3306,
   },
 });
 
-const tables = await metalize.read.tables(['mysql.users', 'mysql.events']);
+const tables = await metalize.read.tables(['public.users', 'public.events']);
 console.log(tables);
 /**
 {
-  'users': {
+  'public.users': {
       columns: [ ... ],
+      primaryKey: { ... },
+      foreignKeys: [ ... ],
+      unique: [ ... ],
+      indexes: [ ... ]
   },
-  'events': { ... }
+  'public.events': { ... }
 }
 */
 ```
@@ -79,10 +86,11 @@ console.log(tables);
 {
   'public.users': {
       columns: [ ... ],
-      primaryKey: { ... } } },
+      primaryKey: { ... },
       foreignKeys: [ ... ],
       unique: [ ... ],
-      indexes: [ ... ]
+      indexes: [ ... ],
+      checks: [ ... ]
   },
   'public.events': { ... }
 }
