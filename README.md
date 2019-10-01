@@ -9,6 +9,12 @@
 </p>
 <br>
 
+## Features
+
+- **PostgreSQL** and **MySQL** dialects
+- Reading **tables** (columns, indexes, primary key, unique, foreign keys, checks)
+- Reading **sequences** (start, max, min, cycle, increment)
+
 ## Documentation
 
 You can find the documentation [on the website](https://av-dev.github.io/metalize/#/)
