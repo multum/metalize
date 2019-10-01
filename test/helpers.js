@@ -3,9 +3,14 @@
 const { expect } = require('chai');
 const Metalize = require('../lib');
 
-exports.setup = ({ schema, dialect, connectionConfig }) => {
+exports.setup = ({
+  schema,
+  dialect,
+  connectionConfig,
+  onGotAdditionalBlocks = () => null,
+}) => {
   const isPostgres = dialect === 'postgres';
-  describe(`test '${dialect}' dialect`, () => {
+  describe(`'${dialect}' dialect`, () => {
     const metalize = new Metalize({ dialect, connectionConfig });
 
     const _table = schema ? `${schema}.metalize_users` : 'metalize_users';
@@ -26,17 +31,19 @@ exports.setup = ({ schema, dialect, connectionConfig }) => {
         `drop table if exists ${_childTable};`,
         `create table ${_childTable} (
           id bigint primary key,
-          name varchar(255)
+          name varchar(255),
+          parent bigint,
+          unique (parent, id)
         );`,
         `create table ${_table} (
           id bigint primary key,
           name varchar(255),
           age smallint,
           child bigint,
-          foreign key (child) references ${_childTable} (id),
+          foreign key (id, child) references ${_childTable} (parent, id),
           unique (name, age)
         );`,
-        `create index index_name on ${_table} (child);`,
+        `create index index_name on ${_table} (id, child);`,
       ]);
     });
 
@@ -47,8 +54,22 @@ exports.setup = ({ schema, dialect, connectionConfig }) => {
     it('reading tables', async () => {
       const tables = await metalize.read.tables([_table]);
       const table = tables[_table];
-      expect(table.primaryKey).to.exist;
+
+      expect(table.primaryKey).to.not.eq(undefined);
+      expect(table.primaryKey).to.deep.include({
+        columns: ['id'],
+      });
+
       expect(table.columns).to.have.lengthOf(4);
+
+      expect(table.foreignKeys[0]).to.not.eq(undefined);
+      expect(table.foreignKeys[0]).to.deep.include({
+        columns: ['id', 'child'],
+        references: {
+          table: _childTable,
+          columns: ['parent', 'id'],
+        },
+      });
     });
 
     if (isPostgres) {
@@ -74,5 +95,9 @@ exports.setup = ({ schema, dialect, connectionConfig }) => {
         });
       });
     }
+
+    onGotAdditionalBlocks(metalize);
+
+    after(() => metalize.endConnection());
   });
 };
