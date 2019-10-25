@@ -25,6 +25,7 @@ declare type MatchType = 'FULL' | 'PARTIAL' | 'SIMPLE'
 declare type ColumnValueType = string | number
 
 interface ForeignKey {
+  name: String
   columns: Array<string>
   match: MatchType,
   onDelete: ActionType,
@@ -40,6 +41,7 @@ interface Column {
 }
 
 interface Index {
+  name: String,
   columns: Array<string>,
 }
 
@@ -53,6 +55,7 @@ interface SequenceSchema {
 }
 
 interface Check {
+  name: String,
   condition: string
 }
 
@@ -69,8 +72,8 @@ declare class Metalize {
   constructor(options: MetalizeOptions);
 
   read: {
-    table(names: String[]): Promise<TableSchema>
-    sequence(names: String[]): Promise<SequenceSchema>
+    tables(names: String[]): Promise<TableSchema>
+    sequences(names: String[]): Promise<SequenceSchema>
   };
 
   endConnection(): Promise<null>
