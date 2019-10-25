@@ -40,7 +40,7 @@ exports.setup = ({
           name varchar(255),
           age smallint,
           child bigint,
-          foreign key (id, child) references ${_childTable} (parent, id) match full on update restrict on delete cascade,
+          foreign key (id, child) references ${_childTable} (parent, id) on update restrict on delete cascade,
           unique (name, age)
         );`,
         `create index index_name on ${_table} (id, child);`,
@@ -69,7 +69,6 @@ exports.setup = ({
           table: _childTable,
           columns: ['parent', 'id'],
         },
-        match: 'FULL',
         onUpdate: 'RESTRICT',
         onDelete: 'CASCADE',
       });
