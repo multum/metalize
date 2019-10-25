@@ -31,7 +31,6 @@
   "scripts": {
     "test": "mocha test/**/index.test.js --no-timeout --exit",
     "eslint": "eslint --max-warnings=0 **/*.js",
-    "lint-staged": "lint-staged",
     "format": "prettier --write **/*.js",
     "docs::start": "docsify serve docs"
   },
@@ -50,13 +49,18 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run test"
     }
   },
   "lint-staged": {
-    "*.{js,md,css,html}": [
-      "prettier --trailing-comma es5 --single-quote --write",
+    "*.js": [
+      "prettier --write",
       "eslint",
+      "git add"
+    ],
+    "*.{md,html}": [
+      "prettier --write",
       "git add"
     ]
   }

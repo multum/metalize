@@ -40,7 +40,7 @@ exports.setup = ({
           name varchar(255),
           age smallint,
           child bigint,
-          foreign key (id, child) references ${_childTable} (parent, id),
+          foreign key (id, child) references ${_childTable} (parent, id) on update restrict on delete cascade,
           unique (name, age)
         );`,
         `create index index_name on ${_table} (id, child);`,
@@ -53,7 +53,7 @@ exports.setup = ({
 
     it('reading tables', async () => {
       const tables = await metalize.read.tables([_table]);
-      const table = tables[_table];
+      const table = tables.get(_table);
 
       expect(table.primaryKey).to.not.eq(undefined);
       expect(table.primaryKey).to.deep.include({
@@ -69,6 +69,8 @@ exports.setup = ({
           table: _childTable,
           columns: ['parent', 'id'],
         },
+        onUpdate: 'RESTRICT',
+        onDelete: 'CASCADE',
       });
     });
 
@@ -84,7 +86,7 @@ exports.setup = ({
       });
       it('reading sequences', async () => {
         const sequences = await metalize.read.sequences([_sequence]);
-        const sequence = sequences[_sequence];
+        const sequence = sequences.get(_sequence);
 
         expect(sequence).to.include({
           start: '100',

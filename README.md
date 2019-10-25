@@ -1,13 +1,11 @@
-<br>
-<p align='center'><img src='https://av-dev.github.io/metalize/logo.svg' alt='metalize'></p>
-<p align='center'>Node.js tool for easy reading <strong>database metadata</strong></p>
-<p align='center'>
-    <img src='https://img.shields.io/travis/com/av-dev/metalize.svg?style=flat-square' alt='build'>
-    <img src='https://img.shields.io/npm/l/metalize.svg?style=flat-square' alt='license'>
-    <img src='https://img.shields.io/npm/v/metalize.svg?style=flat-square' alt='version'>
-    <img src='https://img.shields.io/codecov/c/github/av-dev/metalize.svg?style=flat-square' alt='coverage'>
-</p>
-<br>
+![](https://av-dev.github.io/metalize/logo.svg)
+
+Node.js tool for easy reading **database metadata**
+
+![](https://img.shields.io/travis/com/av-dev/metalize.svg?style=flat-square)
+![](https://img.shields.io/npm/l/metalize.svg?style=flat-square)
+![](https://img.shields.io/npm/v/metalize.svg?style=flat-square)
+![](https://img.shields.io/codecov/c/github/av-dev/metalize.svg?style=flat-square)
 
 ## Features
 
