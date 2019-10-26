@@ -45,15 +45,15 @@ const metalize = new Metalize({
 const tables = await metalize.read.tables(['public.users', 'public.events']);
 console.log(tables);
 /**
-{
-  'public.users': {
+Map {
+  'public.users' => {
       columns: [ ... ],
       primaryKey: { ... },
       foreignKeys: [ ... ],
       unique: [ ... ],
       indexes: [ ... ]
   },
-  'public.events': { ... }
+  'public.events' => { ... }
 }
 */
 ```
@@ -87,8 +87,8 @@ const metalize = new Metalize({
 const tables = await metalize.read.tables(['public.users', 'public.events']);
 console.log(tables);
 /**
-{
-  'public.users': {
+Map {
+  'public.users' => {
       columns: [ ... ],
       primaryKey: { ... },
       foreignKeys: [ ... ],
@@ -96,15 +96,15 @@ console.log(tables);
       indexes: [ ... ],
       checks: [ ... ]
   },
-  'public.events': { ... }
+  'public.events' => { ... }
 }
 */
 
 const sequences = await metalize.read.sequences(['public.users_seq']);
 console.log(sequences);
 /**
-{
-  'public.users_seq': {
+Map {
+  'public.users_seq' => {
       start: '1',
       min: '1',
       max: '9999',
