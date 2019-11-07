@@ -1,11 +1,11 @@
-![](https://av-dev.github.io/metalize/logo.svg)
+![](https://multum.github.io/metalize/logo.svg)
 
 Node.js tool for easy reading **database metadata**
 
-![](https://img.shields.io/travis/com/av-dev/metalize.svg?style=flat-square)
+![](https://img.shields.io/travis/com/multum/metalize.svg?style=flat-square)
 ![](https://img.shields.io/npm/l/metalize.svg?style=flat-square)
 ![](https://img.shields.io/npm/v/metalize.svg?style=flat-square)
-![](https://img.shields.io/codecov/c/github/av-dev/metalize.svg?style=flat-square)
+![](https://img.shields.io/codecov/c/github/multum/metalize.svg?style=flat-square)
 
 ## Features
 
@@ -15,7 +15,7 @@ Node.js tool for easy reading **database metadata**
 
 ## Documentation
 
-You can find the documentation [on the website](https://av-dev.github.io/metalize/#/)
+You can find the documentation [on the website](https://multum.github.io/metalize/#/)
 
 ## Getting started with MySQL
 
@@ -131,4 +131,4 @@ Please also provide a **test plan**, i.e. specify how you verified that your add
 
 ## License
 
-**metalize** is open source software [licensed as MIT](https://github.com/av-dev/metalize/blob/master/LICENSE).
+**metalize** is open source software [licensed as MIT](https://github.com/multum/metalize/blob/master/LICENSE).
