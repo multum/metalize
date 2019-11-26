@@ -62,7 +62,7 @@ exports.setup = ({
   });
 
   after(() => {
-    return _query([
+    return _query(metalize._client, [
       `drop table if exists ${_table};`,
       `drop table if exists ${_childTable};`,
     ]);

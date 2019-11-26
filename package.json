@@ -3,8 +3,8 @@
   "version": "0.0.3",
   "description": "Node.js tool for easy work with database metadata",
   "author": {
-    "name": "Andrey Vereshchak",
-    "email": "vereschak@gmail.com"
+    "name": "Andrew Vereshchak",
+    "email": "andrew.vereshchak@gmail.com"
   },
   "repository": {
     "type": "git",
@@ -37,15 +37,15 @@
   "license": "MIT",
   "devDependencies": {
     "chai": "^4.2.0",
-    "eslint": "^6.3.0",
-    "eslint-config-prettier": "^6.3.0",
+    "eslint": "^6.7.1",
+    "eslint-config-prettier": "^6.7.0",
     "eslint-plugin-prettier": "^3.1.1",
-    "husky": "^3.0.5",
-    "lint-staged": "^9.2.5",
-    "mocha": "^6.2.0",
-    "prettier": "^1.18.2",
-    "pg": "^7.12.1",
-    "mysql2": "^1.7.0"
+    "husky": "^3.1.0",
+    "lint-staged": "^9.4.3",
+    "mocha": "^6.2.2",
+    "mysql2": "^2.0.1",
+    "pg": "^7.14.0",
+    "prettier": "^1.19.1"
   },
   "husky": {
     "hooks": {
