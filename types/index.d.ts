@@ -16,7 +16,7 @@ interface Reference {
   columns: Array<string>,
 }
 
-declare type Dialect = 'postgres'
+declare type Dialect = 'postgres' | 'mysql'
 
 declare type ActionType = 'CASCADE' | 'RESTRICT' | 'NO ACTION'
 
@@ -45,7 +45,7 @@ interface Index {
   columns: Array<string>,
 }
 
-interface SequenceSchema {
+interface SequenceMetadata {
   name: string,
   start: string,
   min: string,
@@ -59,7 +59,7 @@ interface Check {
   condition: string
 }
 
-interface TableSchema {
+interface TableMetadata {
   columns: Array<Column>,
   primaryKey: Index,
   unique: Array<Index>,
@@ -72,8 +72,8 @@ declare class Metalize {
   constructor(options: MetalizeOptions);
 
   read: {
-    tables(names: String[]): Promise<TableSchema>
-    sequences(names: String[]): Promise<SequenceSchema>
+    tables(names: String[]): Promise<Map<string, TableMetadata | undefined>>
+    sequences(names: String[]): Promise<Map<string, SequenceMetadata | undefined>>
   };
 
   endConnection(): Promise<null>

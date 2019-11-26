@@ -2,12 +2,25 @@
 
 const helpers = require('../helpers');
 
-const connectionConfig = {
-  host: '127.0.0.1',
-  port: 5432,
-  database: 'postgres',
-  user: 'postgres',
-  password: 'postgres',
+const options = {
+  dialect: 'postgres',
+  connectionConfig: {
+    host: '127.0.0.1',
+    port: 5432,
+    database: 'postgres',
+    user: 'postgres',
+    password: 'postgres',
+  },
 };
 
-helpers.setup({ dialect: 'postgres', connectionConfig, schema: 'public' });
+describe(`'${options.dialect}' dialect`, () => {
+  helpers.setup({
+    ...options,
+    schema: 'public',
+  });
+  helpers.setup({
+    ...options,
+    schema: 'parallel_schema',
+    prefix: 'parallel',
+  });
+});
