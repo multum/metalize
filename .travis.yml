@@ -1,7 +1,11 @@
-dist: trusty
 language: node_js
 node_js:
   - "9"
+addons:
+  postgresql: "9.5"
+services:
+  - mysql
+  - postgresql
 install:
   - npm install
   - npm install codecov nyc
