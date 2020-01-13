@@ -19,7 +19,7 @@ describe(`'${options.dialect}' dialect`, () => {
     onGotAdditionalBlocks: metalize => {
       it('unsupported sequence reading', async () => {
         try {
-          await metalize.read.sequences(['sequence_name']);
+          await metalize.read({ sequences: ['sequence_name'] });
         } catch (e) {
           return true;
         }

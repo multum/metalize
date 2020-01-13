@@ -22,14 +22,4 @@ describe('common', () => {
     }
     throw new Error('error test');
   });
-
-  it('missing object name', async () => {
-    const metalize = new Metalize({ dialect: 'postgres' });
-    try {
-      await metalize.read.tables([]);
-    } catch (e) {
-      return;
-    }
-    throw new Error('error test');
-  });
 });

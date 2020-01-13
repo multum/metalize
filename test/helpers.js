@@ -69,15 +69,14 @@ exports.setup = ({
   });
 
   it(`${prefix}reading tables`, async () => {
-    const tables = await metalize.read.tables([_table]);
-    const table = tables.get(_table);
+    const result = await metalize.read({ tables: [_table] });
+    const table = result.tables.get(_table);
 
     expect(table.primaryKey).to.not.eq(undefined);
     expect(table.primaryKey.name).to.be.an('string');
     expect(table.primaryKey).to.deep.include({
       columns: ['id'],
     });
-
     expect(table.columns).to.have.lengthOf(4);
 
     expect(table.foreignKeys[0]).to.not.eq(undefined);
@@ -110,8 +109,8 @@ exports.setup = ({
       await _query(metalize._client, [`drop sequence if exists ${_sequence};`]);
     });
     it(`${prefix}reading sequences`, async () => {
-      const sequences = await metalize.read.sequences([_sequence]);
-      const sequence = sequences.get(_sequence);
+      const result = await metalize.read({ sequences: [_sequence] });
+      const sequence = result.sequences.get(_sequence);
 
       expect(sequence).to.include({
         start: '100',

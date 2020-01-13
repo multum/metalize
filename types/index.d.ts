@@ -68,13 +68,20 @@ interface TableMetadata {
   checks: Array<Check>
 }
 
+interface ReadOptions {
+  tables?: Array<string>,
+  sequences?: Array<string>,
+}
+
+interface ReadResult {
+  tables: Map<string, TableMetadata | undefined>,
+  sequences: Map<string, SequenceMetadata | undefined>,
+}
+
 declare class Metalize {
   constructor(options: MetalizeOptions);
 
-  read: {
-    tables(names: String[]): Promise<Map<string, TableMetadata | undefined>>
-    sequences(names: String[]): Promise<Map<string, SequenceMetadata | undefined>>
-  };
+  read(ReadOptions): Promise<ReadResult>;
 
   endConnection(): Promise<null>
 }

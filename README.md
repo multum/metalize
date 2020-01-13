@@ -42,8 +42,10 @@ const metalize = new Metalize({
   },
 });
 
-const tables = await metalize.read.tables(['public.users', 'public.events']);
-console.log(tables);
+const result = await metalize.read({
+  tables: ['public.users', 'public.events'],
+});
+console.log(result.tables);
 /**
 Map {
   'public.users' => {
@@ -84,8 +86,10 @@ const metalize = new Metalize({
   },
 });
 
-const tables = await metalize.read.tables(['public.users', 'public.events']);
-console.log(tables);
+const result = await metalize.read({
+  tables: ['public.users', 'public.events'],
+});
+console.log(result.tables);
 /**
 Map {
   'public.users' => {
@@ -100,8 +104,8 @@ Map {
 }
 */
 
-const sequences = await metalize.read.sequences(['public.users_seq']);
-console.log(sequences);
+const result = await metalize.read({ sequences: ['public.users_seq'] });
+console.log(result.sequences);
 /**
 Map {
   'public.users_seq' => {
