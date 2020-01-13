@@ -1,15 +1,10 @@
 # Methods
 
-## read.tables
+## read
 
-- Arguments: (names: `Array<String>`)
-- Returns: [`Promise<TableMetadata>`](metadata/table.md)
+- Arguments: (`{ ['tables' | 'sequences']: Array<String> }`)
+- Returns: `Promise<{ ['tables' | 'sequences']: Map<String, Metadata | undefined> }>`
 
-Getting the metadata of an existing tables
+> see [table metadata](metadata/table.md) and [sequence metadata](metadata/sequence.md)
 
-## read.sequences
-
-- Arguments: (names: `Array<String>`)
-- Returns: [`Promise<SequenceMetadata>`](metadata/sequence.md)
-
-Getting the metadata of an existing sequences
+Getting the metadata of an existing objects

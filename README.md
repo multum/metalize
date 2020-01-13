@@ -1,3 +1,5 @@
+<br/>
+
 ![](https://multum.github.io/metalize/logo.svg)
 
 Node.js tool for easy reading **database metadata**
@@ -10,7 +12,7 @@ Node.js tool for easy reading **database metadata**
 ## Features
 
 - **PostgreSQL** and **MySQL** dialects
-- Reading **tables** (columns, indexes, primary key, unique, foreign keys, checks)
+- Reading **tables** (columns, indexes, primary keys, unique, foreign keys, checks)
 - Reading **sequences** (start, max, min, cycle, increment)
 
 ## Documentation
@@ -42,8 +44,10 @@ const metalize = new Metalize({
   },
 });
 
-const tables = await metalize.read.tables(['public.users', 'public.events']);
-console.log(tables);
+metalize
+  .read({ tables: ['public.users', 'public.events'] })
+  .then(result => console.log(result.tables));
+
 /**
 Map {
   'public.users' => {
@@ -64,7 +68,7 @@ Map {
 
 - **[Node.js](https://nodejs.org)** **v8.10** or more
 - **[PostgreSQL server](https://www.postgresql.org/download)** **v9.2** or more
-- **[node-postgres](https://github.com/brianc/node-postgres)**
+- **[node-postgres](https://github.com/brianc/node-postgres)** **v7.1** or more
 
 ```bash
 npm install metalize pg
@@ -84,8 +88,10 @@ const metalize = new Metalize({
   },
 });
 
-const tables = await metalize.read.tables(['public.users', 'public.events']);
-console.log(tables);
+metalize
+  .read({ tables: ['public.users', 'public.events'] })
+  .then(result => console.log(result.tables));
+
 /**
 Map {
   'public.users' => {
@@ -100,8 +106,10 @@ Map {
 }
 */
 
-const sequences = await metalize.read.sequences(['public.users_seq']);
-console.log(sequences);
+metalize
+  .read({ sequences: ['public.users_seq'] })
+  .then(result => console.log(result.sequences));
+
 /**
 Map {
   'public.users_seq' => {
