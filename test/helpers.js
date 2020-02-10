@@ -20,7 +20,7 @@ exports.setup = ({
   prefix,
 }) => {
   const isPostgres = dialect === 'postgres';
-
+  console.log(schema);
   const _table = schema ? `${schema}.metalize_users` : 'metalize_users';
   const _childTable = _table + '_child';
   const _sequence = _table + '_seq';
