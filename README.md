@@ -67,8 +67,10 @@ Map {
 #### Requires:
 
 - **[Node.js](https://nodejs.org)** **v8.10** or more
-- **[PostgreSQL server](https://www.postgresql.org/download)** **v9.2** or more
+- **[PostgreSQL server](https://www.postgresql.org/download)** **v9.5** or more
 - **[node-postgres](https://github.com/brianc/node-postgres)** **v7.1** or more
+
+> **Do not use quotes** in the name of the object. `metalize` automatically adds them when needed
 
 ```bash
 npm install metalize pg
@@ -107,12 +109,12 @@ Map {
 */
 
 metalize
-  .read({ sequences: ['public.users_seq'] })
+  .read({ sequences: ['public.usersSeq'] })
   .then(result => console.log(result.sequences));
 
 /**
 Map {
-  'public.users_seq' => {
+  'public.usersSeq' => {
       start: '1',
       min: '1',
       max: '9999',
