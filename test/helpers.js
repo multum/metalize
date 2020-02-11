@@ -43,7 +43,7 @@ exports.setup = ({
 
   before(() => {
     return _query(metalize._client, [
-      schema ? `create schema if not exists "${schema}";` : null,
+      schema ? `create schema if not exists ${quote(schema)};` : null,
       `drop table if exists ${quotedTable};`,
       `drop table if exists ${quotedChildTable};`,
       `create table ${quotedChildTable} (

@@ -2,7 +2,7 @@
 
 const { expect } = require('chai');
 const Metalize = require('../../lib');
-const BaseConnectionManager = require('../../lib/dialects/base/connectionManeger');
+const BaseConnectionManager = require('../../lib/dialects/base/connection-maneger');
 
 describe('common', () => {
   it('unsupported dialect', () => {
