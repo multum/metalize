@@ -48,6 +48,7 @@ exports.setup = ({
       `create table ${_table} (
           id bigint primary key,
           name varchar(255),
+          budget numeric(16, 3),
           age smallint,
           child bigint,
           constraint ${_constraintNames.foreignKey} foreign key (id, child)
@@ -77,7 +78,18 @@ exports.setup = ({
     expect(table.primaryKey).to.deep.include({
       columns: ['id'],
     });
-    expect(table.columns).to.have.lengthOf(4);
+
+    expect(table.columns).to.have.lengthOf(5);
+
+    expect(table.columns.find(({ name }) => name === 'name')).to.deep.include({
+      details: { type: 'character varying', length: 255 },
+    });
+
+    expect(table.columns.find(({ name }) => name === 'budget')).to.deep.include(
+      {
+        details: { type: 'numeric', precision: 16, scale: 3 },
+      }
+    );
 
     expect(table.foreignKeys[0]).to.not.eq(undefined);
     expect(table.foreignKeys[0]).to.deep.include({

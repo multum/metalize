@@ -29,7 +29,10 @@
     "node": ">=8.10"
   },
   "scripts": {
-    "test": "mocha test/**/index.test.js --no-timeout --exit",
+    "test-runner": "mocha --timeout 10000 --exit",
+    "test": "npm run test-runner test/**/index.test.js",
+    "test/mysql": "npm run test-runner test/mysql/index.test.js",
+    "test/postgres": "npm run test-runner test/postgres/index.test.js",
     "eslint": "eslint --max-warnings=0 **/*.js",
     "format": "prettier --write **/*.js",
     "docs::start": "docsify serve docs"
