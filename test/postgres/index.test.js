@@ -20,7 +20,7 @@ describe(`'${options.dialect}' dialect`, () => {
   });
   helpers.setup({
     ...options,
-    schema: 'parallel_schema',
+    schema: 'ParallelSchema', // test 'quoted identifiers'
     prefix: 'parallel',
   });
 });
