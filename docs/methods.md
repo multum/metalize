@@ -2,7 +2,7 @@
 
 ## read
 
-- Arguments: (`{ ['tables' | 'sequences']: Array<String> }`)
+- Arguments: (`{ ['tables' | 'sequences']: String[] }`)
 - Returns: `Promise<{ ['tables' | 'sequences']: Map<String, Metadata | undefined> }>`
 
 > see [table metadata](metadata/table.md) and [sequence metadata](metadata/sequence.md)

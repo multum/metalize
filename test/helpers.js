@@ -17,17 +17,18 @@ const _getTableColumn = (table, column) => {
   return table && table.columns.find(({ name }) => name === column);
 };
 
+const _objectNamePrefix = 'metalize_';
+
 exports.setup = ({
   schema,
   dialect,
   connectionConfig,
   onGotAdditionalBlocks = () => null,
-  prefix,
 }) => {
   const isPostgres = dialect === 'postgres';
-  const quote = isPostgres ? helpers.quoteName : n => n;
+  const quote = isPostgres ? helpers.quoteObjectName : n => n;
 
-  const table = schema ? `${schema}.metalize_users` : 'metalize_users';
+  const table = (schema ? `${schema}.` : '') + `${_objectNamePrefix}users`;
   const childTable = table + '_child';
   const sequence = table + '_seq';
 
@@ -36,12 +37,12 @@ exports.setup = ({
   const quotedSequence = quote(sequence);
 
   const _constraintNames = {
-    check: `metalize_check_constraint`,
-    foreignKey: `metalize_foreign_key_constraint`,
-    unique: `metalize_unique_constraint`,
+    check: _objectNamePrefix + 'check_constraint',
+    foreignKey: _objectNamePrefix + 'foreign_key_constraint',
+    unique: _objectNamePrefix + 'unique_constraint',
   };
 
-  prefix = prefix ? `[ ${prefix} ] ` : '';
+  const prefix = schema ? `[ ${schema} ] ` : '';
 
   const metalize = new Metalize({ dialect, connectionConfig });
 
@@ -59,7 +60,7 @@ exports.setup = ({
       `create table ${quotedTable} (
           id bigint primary key,
           name varchar(255),
-          budget numeric(16, 3),
+          budget decimal(16, 3),
           age smallint,
           child bigint,
           constraint ${_constraintNames.foreignKey} foreign key (id, child)
@@ -93,11 +94,18 @@ exports.setup = ({
     expect(_table.columns).to.have.lengthOf(5);
 
     expect(_getTableColumn(_table, 'name')).to.deep.include({
-      details: { type: 'character varying', length: 255 },
+      details: {
+        type: isPostgres ? 'character varying' : 'varchar',
+        length: 255,
+      },
     });
 
     expect(_getTableColumn(_table, 'budget')).to.deep.include({
-      details: { type: 'numeric', precision: 16, scale: 3 },
+      details: {
+        type: isPostgres ? 'numeric' : 'decimal',
+        precision: 16,
+        scale: 3,
+      },
     });
 
     expect(_table.foreignKeys[0]).to.not.eq(undefined);

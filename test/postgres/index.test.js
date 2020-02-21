@@ -21,6 +21,5 @@ describe(`'${options.dialect}' dialect`, () => {
   helpers.setup({
     ...options,
     schema: 'ParallelSchema', // test 'quoted identifiers'
-    prefix: 'parallel',
   });
 });

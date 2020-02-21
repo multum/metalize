@@ -4,29 +4,26 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+declare type Dialect = 'postgres' | 'mysql'
 
 interface MetalizeOptions {
   dialect: Dialect,
   connectionConfig?: Object,
-  client?: any
+  client?: Object
 }
 
 interface Reference {
   table: string,
-  columns: Array<string>,
+  columns: string[],
 }
-
-declare type Dialect = 'postgres' | 'mysql'
 
 declare type ActionType = 'CASCADE' | 'RESTRICT' | 'NO ACTION'
 
 declare type MatchType = 'FULL' | 'PARTIAL' | 'SIMPLE'
 
-declare type ColumnValueType = string | number
-
 interface ForeignKey {
   name: String
-  columns: Array<string>
+  columns: string[]
   match: MatchType,
   onDelete: ActionType,
   onUpdate: ActionType,
@@ -37,12 +34,18 @@ interface Column {
   name: string,
   type: string,
   nullable: boolean,
-  default: ColumnValueType
+  default:  string | number,
+  details: {
+    type: string,
+    length?: number,
+    precision?: number,
+    scale?: number
+  }
 }
 
 interface Index {
   name: String,
-  columns: Array<string>,
+  columns: string[],
 }
 
 interface SequenceMetadata {
@@ -60,17 +63,17 @@ interface Check {
 }
 
 interface TableMetadata {
-  columns: Array<Column>,
+  columns: Column[],
   primaryKey: Index,
-  unique: Array<Index>,
-  indexes: Array<Index>,
-  foreignKeys: Array<ForeignKey>,
-  checks: Array<Check>
+  unique: Index[],
+  indexes: Index[],
+  foreignKeys: ForeignKey[],
+  checks: Check[]
 }
 
 interface ReadOptions {
-  tables?: Array<string>,
-  sequences?: Array<string>,
+  tables?: string[],
+  sequences?: string[],
 }
 
 interface ReadResult {
