@@ -3,12 +3,13 @@
 const { expect } = require('chai');
 const helpers = require('../helpers');
 
+const schema = 'metalize_schema';
+
 const options = {
   dialect: 'mysql',
   connectionConfig: {
     host: 'localhost',
     user: 'root',
-    database: 'mysql',
     port: 3306,
   },
 };
@@ -16,7 +17,7 @@ const options = {
 describe(`'${options.dialect}' dialect`, () => {
   helpers.setup({
     ...options,
-    schema: options.connectionConfig.database,
+    schema,
     onGotAdditionalBlocks: metalize => {
       it('unsupported sequence reading', async () => {
         let error;

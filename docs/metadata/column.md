@@ -14,7 +14,7 @@ Type definition
 
 ## default
 
-- Type: `String` | `Number`
+- Type: `String`
 
 Default value
 
@@ -26,7 +26,7 @@ The column nullability
 
 ## details.type
 
-- Type: `string`
+- Type: `String`
 
 Type name(without parameters)
 
@@ -34,16 +34,29 @@ Type name(without parameters)
 
 > (date | numeric) types
 
-- Type: `number`
+- Type: `Number`
 
 ## details.scale
 
 > numeric types
 
-- Type: `number`
+- Type: `Number`
 
 ## details.length
 
 > character types
 
-- Type: `number`
+- Type: `Number`
+
+## identity
+- Type:
+    - PostgreSQL: `Object | false`
+    - MySQL: `Boolean`
+    
+## identity.generation
+
+- Type: `String`
+
+`ALWAYS` &#124; `BY DEFAULT`
+
+## [identity.[sequence option]](metadata/sequence.md)

@@ -2,10 +2,9 @@ language: node_js
 node_js:
   - "10"
 addons:
-  postgresql: "9.5"
+  postgresql: "10"
 services:
   - mysql
-  - postgresql
 install:
   - npm install
   - npm install codecov nyc

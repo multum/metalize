@@ -4,6 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
 declare type Dialect = 'postgres' | 'mysql'
 
 interface MetalizeOptions {
@@ -19,15 +20,24 @@ interface Reference {
 
 declare type ActionType = 'CASCADE' | 'RESTRICT' | 'NO ACTION'
 
-declare type MatchType = 'FULL' | 'PARTIAL' | 'SIMPLE'
-
 interface ForeignKey {
   name: String
   columns: string[]
-  match: MatchType,
+  match: 'FULL' | 'PARTIAL' | 'SIMPLE',
   onDelete: ActionType,
   onUpdate: ActionType,
   references: Reference
+}
+
+interface IdentityMetadata extends SequenceMetadata {
+  generation: 'ALWAYS' | 'BY DEFAULT'
+}
+
+interface ColumnTypeDetails {
+  type: string,
+  length?: number,
+  precision?: number,
+  scale?: number
 }
 
 interface Column {
@@ -35,12 +45,8 @@ interface Column {
   type: string,
   nullable: boolean,
   default:  string | number,
-  details: {
-    type: string,
-    length?: number,
-    precision?: number,
-    scale?: number
-  }
+  identity: IdentityMetadata | Boolean,
+  details: ColumnTypeDetails
 }
 
 interface Index {
@@ -49,7 +55,6 @@ interface Index {
 }
 
 interface SequenceMetadata {
-  name: string,
   start: string,
   min: string,
   max: string,
@@ -77,8 +82,8 @@ interface ReadOptions {
 }
 
 interface ReadResult {
-  tables: Map<string, TableMetadata | undefined>,
-  sequences: Map<string, SequenceMetadata | undefined>,
+  tables: Record<string, TableMetadata | undefined>,
+  sequences: Record<string, SequenceMetadata | undefined>,
 }
 
 declare class Metalize {
