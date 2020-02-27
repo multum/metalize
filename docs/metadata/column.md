@@ -6,11 +6,39 @@
 
 Column name
 
-## type
+## type.name
 
 - Type: `String`
 
-Type definition
+> Examples: `'numeric', 'character varying'`
+
+Type name(without modifier type) 
+
+## type.raw
+
+- Type: `String`
+
+> Examples: `'numeric(16, 2)', 'character varying(255)'`
+>
+SQL name of a data type(possibly with a modifier type)
+
+## type.precision
+
+***(date | numeric) types***
+
+- Type: `Number`
+
+## type.scale
+
+***numeric types***
+
+- Type: `Number`
+
+## type.length
+
+***character types***
+
+- Type: `Number`
 
 ## default
 
@@ -24,31 +52,8 @@ Default value
 
 The column nullability
 
-## details.type
-
-- Type: `String`
-
-Type name(without parameters)
-
-## details.precision
-
-***(date | numeric) types***
-
-- Type: `Number`
-
-## details.scale
-
-***numeric types***
-
-- Type: `Number`
-
-## details.length
-
-***character types***
-
-- Type: `Number`
-
 ## identity
+!> `postgres` dialect requires version 10 or later
 - Types:
     - PostgreSQL: `Object`
     - MySQL: `Boolean`

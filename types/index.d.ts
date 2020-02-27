@@ -33,19 +33,19 @@ interface IdentityMetadata extends SequenceMetadata {
   generation: 'ALWAYS' | 'BY DEFAULT'
 }
 
-interface ColumnTypeDetails {
-  type: string,
+interface ColumnType {
+  name: string,
+  raw: string,
   length?: number,
   precision?: number,
-  scale?: number
+  scale?: number,
 }
 
 interface Column {
   name: string,
-  type: string,
+  type: ColumnType,
   nullable: boolean,
   default:  string,
-  details: ColumnTypeDetails
   identity?: IdentityMetadata,
 }
 

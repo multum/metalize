@@ -97,20 +97,16 @@ exports.setup = ({
 
     expect(_table.columns).to.have.lengthOf(5);
 
-    expect(_getTableColumn(_table, 'name')).to.deep.include({
+    expect(_getTableColumn(_table, 'name')).to.nested.include({
+      'type.name': isPostgres ? 'character varying' : 'varchar',
+      'type.length': 255,
       default: isPostgres ? "'noname'::character varying" : 'noname',
-      details: {
-        type: isPostgres ? 'character varying' : 'varchar',
-        length: 255,
-      },
     });
 
-    expect(_getTableColumn(_table, 'budget')).to.deep.include({
-      details: {
-        type: isPostgres ? 'numeric' : 'decimal',
-        precision: 16,
-        scale: 3,
-      },
+    expect(_getTableColumn(_table, 'budget')).to.nested.include({
+      'type.name': isPostgres ? 'numeric' : 'decimal',
+      'type.precision': 16,
+      'type.scale': 3,
     });
 
     expect(_table.foreignKeys[0]).to.not.eq(undefined);
