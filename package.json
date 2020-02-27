@@ -1,6 +1,6 @@
 {
   "name": "metalize",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Node.js tool for easy work with database metadata",
   "author": {
     "name": "Andrew Vereshchak",
