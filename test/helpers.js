@@ -1,6 +1,5 @@
 'use strict';
 
-const { expect } = require('chai');
 const Metalize = require('../lib');
 const helpers = require('../lib/dialects/postgres/helpers');
 
@@ -44,7 +43,7 @@ exports.setup = ({
 
   const metalize = new Metalize({ dialect, connectionConfig });
 
-  before(() => {
+  beforeAll(() => {
     const queries = [
       schema ? `create schema if not exists ${quote(schema)};` : null,
       `drop table if exists ${quotedTable};`,
@@ -89,28 +88,32 @@ exports.setup = ({
     const result = await metalize.read({ tables: [table] });
     const _table = result.tables.get(table);
 
-    expect(_table.primaryKey).to.not.eq(undefined);
-    expect(_table.primaryKey.name).to.be.an('string');
-    expect(_table.primaryKey).to.deep.include({
+    expect(_table.primaryKey).toBeDefined();
+    expect(typeof _table.primaryKey.name).toBe('string');
+    expect(_table.primaryKey).toMatchObject({
       columns: ['id'],
     });
 
-    expect(_table.columns).to.have.lengthOf(5);
+    expect(_table.columns).toHaveLength(5);
 
-    expect(_getTableColumn(_table, 'name')).to.nested.include({
-      'type.name': isPostgres ? 'character varying' : 'varchar',
-      'type.length': 255,
+    expect(_getTableColumn(_table, 'name')).toMatchObject({
+      type: {
+        name: isPostgres ? 'character varying' : 'varchar',
+        length: 255,
+      },
       default: isPostgres ? "'noname'::character varying" : 'noname',
     });
 
-    expect(_getTableColumn(_table, 'budget')).to.nested.include({
-      'type.name': isPostgres ? 'numeric' : 'decimal',
-      'type.precision': 16,
-      'type.scale': 3,
+    expect(_getTableColumn(_table, 'budget')).toMatchObject({
+      type: {
+        name: isPostgres ? 'numeric' : 'decimal',
+        precision: 16,
+        scale: 3,
+      },
     });
 
-    expect(_table.foreignKeys[0]).to.not.eq(undefined);
-    expect(_table.foreignKeys[0]).to.deep.include({
+    expect(_table.foreignKeys[0]).toBeDefined();
+    expect(_table.foreignKeys[0]).toMatchObject({
       name: _constraintNames.foreignKey,
       columns: ['id', 'child'],
       references: {
@@ -122,22 +125,22 @@ exports.setup = ({
     });
 
     const ageColumn = _getTableColumn(_table, 'age');
-    expect(ageColumn).to.not.eq(undefined);
+    expect(ageColumn).toBeDefined();
     if (isPostgres) {
-      expect(ageColumn.identity).to.include({
+      expect(ageColumn.identity).toMatchObject({
         start: '100',
         min: '100',
         max: '9999',
         cycle: false,
       });
     } else {
-      expect(ageColumn.identity).to.equal(true);
+      expect(ageColumn.identity).toBeTruthy();
     }
 
     if (isPostgres) {
-      expect(_table.checks[0]).to.not.eq(undefined);
-      expect(_table.checks[0].name).to.be.eq(_constraintNames.check);
-      expect(_table.checks[0].condition).to.be.an('string');
+      expect(_table.checks[0]).toBeDefined();
+      expect(_table.checks[0].name).toEqual(_constraintNames.check);
+      expect(typeof _table.checks[0].condition).toEqual('string');
     }
   });
 
@@ -146,7 +149,7 @@ exports.setup = ({
       const result = await metalize.read({ sequences: [sequence] });
       const _sequence = result.sequences.get(sequence);
 
-      expect(_sequence).to.include({
+      expect(_sequence).toMatchObject({
         start: '100',
         min: '100',
         max: '9999',
@@ -158,7 +161,7 @@ exports.setup = ({
 
   onGotAdditionalBlocks(metalize);
 
-  after(async () => {
+  afterAll(async () => {
     if (schema) {
       await _query(metalize._client, [
         isPostgres
