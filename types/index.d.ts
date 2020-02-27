@@ -91,7 +91,7 @@ declare class Metalize {
 
   read(options: ReadOptions): Promise<ReadResult>;
 
-  endConnection(): Promise<null>
+  end(): Promise<void>
 }
 
 export = Metalize;

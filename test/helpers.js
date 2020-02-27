@@ -169,6 +169,6 @@ exports.setup = ({
           : `drop schema if exists ${schema}`,
       ]);
     }
-    return metalize.endConnection();
+    return metalize.end();
   });
 };
