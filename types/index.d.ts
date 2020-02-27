@@ -44,9 +44,9 @@ interface Column {
   name: string,
   type: string,
   nullable: boolean,
-  default:  string | number,
-  identity: IdentityMetadata | Boolean,
+  default:  string,
   details: ColumnTypeDetails
+  identity?: IdentityMetadata,
 }
 
 interface Index {

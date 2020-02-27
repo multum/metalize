@@ -32,25 +32,25 @@ Type name(without parameters)
 
 ## details.precision
 
-> (date | numeric) types
+***(date | numeric) types***
 
 - Type: `Number`
 
 ## details.scale
 
-> numeric types
+***numeric types***
 
 - Type: `Number`
 
 ## details.length
 
-> character types
+***character types***
 
 - Type: `Number`
 
 ## identity
-- Type:
-    - PostgreSQL: `Object | false`
+- Types:
+    - PostgreSQL: `Object`
     - MySQL: `Boolean`
     
 ## identity.generation
