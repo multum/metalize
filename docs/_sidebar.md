@@ -1,5 +1,6 @@
 <!-- docs/_sidebar.md -->
 
+- [Readme](/)
 - [Configuration](configuration.md)
 - [Methods](methods.md)
 - Metadata

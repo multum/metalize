@@ -5,48 +5,56 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+declare type Dialect = 'postgres' | 'mysql'
+
 interface MetalizeOptions {
   dialect: Dialect,
   connectionConfig?: Object,
-  client?: any
+  client?: Object
 }
 
 interface Reference {
   table: string,
-  columns: Array<string>,
+  columns: string[],
 }
-
-declare type Dialect = 'postgres' | 'mysql'
 
 declare type ActionType = 'CASCADE' | 'RESTRICT' | 'NO ACTION'
 
-declare type MatchType = 'FULL' | 'PARTIAL' | 'SIMPLE'
-
-declare type ColumnValueType = string | number
-
 interface ForeignKey {
   name: String
-  columns: Array<string>
-  match: MatchType,
+  columns: string[]
+  match: 'FULL' | 'PARTIAL' | 'SIMPLE',
   onDelete: ActionType,
   onUpdate: ActionType,
   references: Reference
 }
 
+interface IdentityMetadata extends SequenceMetadata {
+  generation: 'ALWAYS' | 'BY DEFAULT'
+}
+
+interface ColumnType {
+  name: string,
+  raw: string,
+  length?: number,
+  precision?: number,
+  scale?: number,
+}
+
 interface Column {
   name: string,
-  type: string,
+  type: ColumnType,
   nullable: boolean,
-  default: ColumnValueType
+  default:  string,
+  identity?: IdentityMetadata,
 }
 
 interface Index {
   name: String,
-  columns: Array<string>,
+  columns: string[],
 }
 
 interface SequenceMetadata {
-  name: string,
   start: string,
   min: string,
   max: string,
@@ -60,22 +68,22 @@ interface Check {
 }
 
 interface TableMetadata {
-  columns: Array<Column>,
+  columns: Column[],
   primaryKey: Index,
-  unique: Array<Index>,
-  indexes: Array<Index>,
-  foreignKeys: Array<ForeignKey>,
-  checks: Array<Check>
+  unique: Index[],
+  indexes: Index[],
+  foreignKeys: ForeignKey[],
+  checks: Check[]
 }
 
 interface ReadOptions {
-  tables?: Array<string>,
-  sequences?: Array<string>,
+  tables?: string[],
+  sequences?: string[],
 }
 
 interface ReadResult {
-  tables: Map<string, TableMetadata | undefined>,
-  sequences: Map<string, SequenceMetadata | undefined>,
+  tables: Record<string, TableMetadata | undefined>,
+  sequences: Record<string, SequenceMetadata | undefined>,
 }
 
 declare class Metalize {
@@ -83,7 +91,7 @@ declare class Metalize {
 
   read(options: ReadOptions): Promise<ReadResult>;
 
-  endConnection(): Promise<null>
+  end(): Promise<void>
 }
 
 export = Metalize;

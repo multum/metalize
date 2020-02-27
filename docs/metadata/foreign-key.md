@@ -8,7 +8,7 @@ Constraint name
 
 ## columns
 
-- Type: `Array<String>`
+- Type: `String[]`
 
 List of column names
 
@@ -26,7 +26,7 @@ Foreign table name
 
 ## references.columns
 
-- Type: `Array<String>`
+- Type: `String[]`
 
 Foreign table column names
 

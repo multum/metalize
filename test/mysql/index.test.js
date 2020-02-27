@@ -1,14 +1,14 @@
 'use strict';
 
-const { expect } = require('chai');
 const helpers = require('../helpers');
+
+const schema = 'metalize_schema';
 
 const options = {
   dialect: 'mysql',
   connectionConfig: {
     host: 'localhost',
     user: 'root',
-    database: 'mysql',
     port: 3306,
   },
 };
@@ -16,17 +16,12 @@ const options = {
 describe(`'${options.dialect}' dialect`, () => {
   helpers.setup({
     ...options,
-    schema: options.connectionConfig.database,
+    schema,
     onGotAdditionalBlocks: metalize => {
-      it('unsupported sequence reading', async () => {
-        let error;
-        try {
-          await metalize.read({ sequences: ['sequence_name'] });
-        } catch (e) {
-          error = e;
-        }
-        expect(error).to.instanceOf(Error);
-        expect(error.message).to.equal(
+      test('unsupported sequence reading', () => {
+        return expect(
+          metalize.read({ sequences: ['sequence_name'] })
+        ).rejects.toThrow(
           `Reading a sequence for the '${options.dialect}' dialect is not supported`
         );
       });

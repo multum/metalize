@@ -1,37 +1,25 @@
 # Table
 
-## columns
+## [columns](metadata/column.md)
 
-- Type: `Array<Object>`
+- Type: `Object[]`
 
-Array of [objects with table column properties](metadata/column.md)
-
-## indexes
-
-- Type: `Array<Object>`
-
-Array of [objects with table index properties](metadata/index.md)
-
-## foreignKeys
-
-- Type: `Array<Object>`
-
-Array of [objects with table foreign key properties](metadata/foreign-key.md)
-
-## unique
-
-- Type: `Array<Object>`
-
-Array of [objects with table unique properties](metadata/unique.md)
-
-## primaryKey
+## [primaryKey](metadata/primary-key.md)
 
 - Type: `Object`
 
-[Object with table primary key properties](metadata/primary-key.md)
+## [indexes](metadata/index.md)
 
-## checks
+- Type: `Object[]`
 
-- Type: `Array<Object>`
+## [foreignKeys](metadata/foreign-key.md)
 
-Array of [objects with table check properties](metadata/check.md)
+- Type: `Object[]`
+
+## [unique](metadata/unique.md)
+
+- Type: `Object[]`
+
+## [checks](metadata/check.md)
+
+- Type: `Object[]`

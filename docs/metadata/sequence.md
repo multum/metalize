@@ -2,19 +2,19 @@
 
 ## start
 
-- Type: `String | Number`
+- Type: `String`
 
 Start value
 
 ## min
 
-- Type: `String | Number`
+- Type: `String`
 
 Minimum value
 
 ## max
 
-- Type: `String | Number`
+- Type: `String`
 
 Maximum value
 
@@ -26,6 +26,6 @@ Sequence looping when max value is reached
 
 ## increment
 
-- Type: `String | Number`
+- Type: `String`
 
 Determines which number will be added to the current value of the sequence

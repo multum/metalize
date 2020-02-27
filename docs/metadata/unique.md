@@ -8,6 +8,6 @@ Constraint name
 
 ## columns
 
-- Type: `Array<String>`
+- Type: `String[]`
 
 List of column names
