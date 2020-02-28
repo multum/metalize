@@ -2,7 +2,7 @@
 
 const helpers = require('../helpers');
 
-const schema = 'metalize_schema';
+const schema = 'MetalizeSchema';
 
 const options = {
   dialect: 'postgres',
@@ -16,12 +16,5 @@ const options = {
 };
 
 describe(`'${options.dialect}' dialect`, () => {
-  helpers.setup({
-    ...options,
-    schema,
-  });
-  helpers.setup({
-    ...options,
-    schema: 'Parallel_' + schema, // test 'quoted identifiers'
-  });
+  helpers.setup({ ...options, schema });
 });

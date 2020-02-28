@@ -12,10 +12,6 @@ const _query = (client, queries) => {
     );
 };
 
-const _getTableColumn = (table, column) => {
-  return table && table.columns.find(({ name }) => name === column);
-};
-
 exports.setup = ({
   schema,
   dialect,
@@ -38,8 +34,6 @@ exports.setup = ({
     foreignKey: 'users_f_constraint',
     unique: 'users_u_constraint',
   };
-
-  const prefix = schema ? `[ ${schema} ] ` : '';
 
   const metalize = new Metalize({ dialect, connectionConfig });
 
@@ -84,78 +78,17 @@ exports.setup = ({
     return _query(metalize._client, queries);
   });
 
-  it(`${prefix}reading tables`, async () => {
-    const result = await metalize.read({ tables: [table] });
-    const _table = result.tables.get(table);
-
-    expect(_table.primaryKey).toBeDefined();
-    expect(typeof _table.primaryKey.name).toBe('string');
-    expect(_table.primaryKey).toMatchObject({
-      columns: ['id'],
-    });
-
-    expect(_table.columns).toHaveLength(5);
-
-    expect(_getTableColumn(_table, 'name')).toMatchObject({
-      type: {
-        name: isPostgres ? 'character varying' : 'varchar',
-        length: 255,
-      },
-      default: isPostgres ? "'noname'::character varying" : 'noname',
-    });
-
-    expect(_getTableColumn(_table, 'budget')).toMatchObject({
-      type: {
-        name: isPostgres ? 'numeric' : 'decimal',
-        precision: 16,
-        scale: 3,
-      },
-    });
-
-    expect(_table.foreignKeys[0]).toBeDefined();
-    expect(_table.foreignKeys[0]).toMatchObject({
-      name: _constraintNames.foreignKey,
-      columns: ['id', 'child'],
-      references: {
-        table: childTable,
-        columns: ['parent', 'id'],
-      },
-      onUpdate: 'RESTRICT',
-      onDelete: 'CASCADE',
-    });
-
-    const ageColumn = _getTableColumn(_table, 'age');
-    expect(ageColumn).toBeDefined();
-    if (isPostgres) {
-      expect(ageColumn.identity).toMatchObject({
-        start: '100',
-        min: '100',
-        max: '9999',
-        cycle: false,
-      });
-    } else {
-      expect(ageColumn.identity).toBeTruthy();
-    }
-
-    if (isPostgres) {
-      expect(_table.checks[0]).toBeDefined();
-      expect(_table.checks[0].name).toEqual(_constraintNames.check);
-      expect(typeof _table.checks[0].condition).toEqual('string');
-    }
+  it(`[ reading tables ]`, function() {
+    return expect(
+      metalize.read({ tables: [table] })
+    ).resolves.toMatchSnapshot();
   });
 
   if (isPostgres) {
-    it(`${prefix}reading sequences`, async () => {
-      const result = await metalize.read({ sequences: [sequence] });
-      const _sequence = result.sequences.get(sequence);
-
-      expect(_sequence).toMatchObject({
-        start: '100',
-        min: '100',
-        max: '9999',
-        increment: '1',
-        cycle: true,
-      });
+    it(`[ reading sequences ]`, function() {
+      return expect(
+        metalize.read({ sequences: [sequence] })
+      ).resolves.toMatchSnapshot();
     });
   }
 
