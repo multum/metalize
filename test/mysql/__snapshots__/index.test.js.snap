@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`'mysql' dialect [ reading tables ] 1`] = `
+Object {
+  "sequences": Map {},
+  "tables": Map {
+    "metalize_schema.users" => Object {
+      "columns": Array [
+        Object {
+          "default": null,
+          "identity": false,
+          "name": "id",
+          "nullable": false,
+          "type": Object {
+            "name": "bigint",
+            "precision": 19,
+            "raw": "bigint",
+            "scale": 0,
+          },
+        },
+        Object {
+          "default": "noname",
+          "identity": false,
+          "name": "name",
+          "nullable": true,
+          "type": Object {
+            "length": 255,
+            "name": "varchar",
+            "raw": "varchar(255)",
+          },
+        },
+        Object {
+          "default": null,
+          "identity": false,
+          "name": "budget",
+          "nullable": true,
+          "type": Object {
+            "name": "decimal",
+            "precision": 16,
+            "raw": "decimal(16,3)",
+            "scale": 3,
+          },
+        },
+        Object {
+          "default": null,
+          "identity": true,
+          "name": "age",
+          "nullable": false,
+          "type": Object {
+            "name": "bigint",
+            "precision": 19,
+            "raw": "bigint",
+            "scale": 0,
+          },
+        },
+        Object {
+          "default": null,
+          "identity": false,
+          "name": "child",
+          "nullable": true,
+          "type": Object {
+            "name": "bigint",
+            "precision": 19,
+            "raw": "bigint",
+            "scale": 0,
+          },
+        },
+      ],
+      "foreignKeys": Array [
+        Object {
+          "columns": Array [
+            "id",
+            "child",
+          ],
+          "match": "NONE",
+          "name": "users_f_constraint",
+          "onDelete": "CASCADE",
+          "onUpdate": "RESTRICT",
+          "references": Object {
+            "columns": Array [
+              "parent",
+              "id",
+            ],
+            "table": "metalize_schema.users_child",
+          },
+        },
+      ],
+      "indexes": Array [
+        Object {
+          "columns": Array [
+            "id",
+            "child",
+          ],
+          "name": "index_name",
+        },
+        Object {
+          "columns": Array [
+            "age",
+          ],
+          "name": "age_index",
+        },
+      ],
+      "primaryKey": Object {
+        "columns": Array [
+          "id",
+        ],
+        "name": "PRIMARY",
+      },
+      "unique": Array [
+        Object {
+          "columns": Array [
+            "name",
+            "age",
+          ],
+          "name": "users_u_constraint",
+        },
+      ],
+    },
+  },
+}
+`;

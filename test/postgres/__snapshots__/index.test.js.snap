@@ -1,0 +1,149 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`'postgres' dialect [ reading sequences ] 1`] = `
+Object {
+  "sequences": Map {
+    "MetalizeSchema.users_seq" => Object {
+      "cycle": true,
+      "increment": "1",
+      "max": "9999",
+      "min": "100",
+      "start": "100",
+    },
+  },
+  "tables": Map {},
+}
+`;
+
+exports[`'postgres' dialect [ reading tables ] 1`] = `
+Object {
+  "sequences": Map {},
+  "tables": Map {
+    "MetalizeSchema.users" => Object {
+      "checks": Array [
+        Object {
+          "condition": "age > 21",
+          "name": "users_c_constraint",
+        },
+      ],
+      "columns": Array [
+        Object {
+          "collate": null,
+          "default": null,
+          "identity": null,
+          "name": "id",
+          "nullable": false,
+          "type": Object {
+            "name": "bigint",
+            "precision": 64,
+            "raw": "bigint",
+            "scale": 0,
+          },
+        },
+        Object {
+          "collate": null,
+          "default": null,
+          "identity": null,
+          "name": "budget",
+          "nullable": true,
+          "type": Object {
+            "name": "numeric",
+            "precision": 16,
+            "raw": "numeric(16,3)",
+            "scale": 3,
+          },
+        },
+        Object {
+          "collate": null,
+          "default": null,
+          "identity": null,
+          "name": "child",
+          "nullable": true,
+          "type": Object {
+            "name": "bigint",
+            "precision": 64,
+            "raw": "bigint",
+            "scale": 0,
+          },
+        },
+        Object {
+          "collate": null,
+          "default": "'noname'::character varying",
+          "identity": null,
+          "name": "name",
+          "nullable": true,
+          "type": Object {
+            "length": 255,
+            "name": "character varying",
+            "raw": "character varying(255)",
+          },
+        },
+        Object {
+          "collate": null,
+          "default": null,
+          "identity": Object {
+            "cycle": false,
+            "generation": "ALWAYS",
+            "increment": "5",
+            "max": "9999",
+            "min": "100",
+            "start": "100",
+          },
+          "name": "age",
+          "nullable": false,
+          "type": Object {
+            "name": "smallint",
+            "precision": 16,
+            "raw": "smallint",
+            "scale": 0,
+          },
+        },
+      ],
+      "foreignKeys": Array [
+        Object {
+          "columns": Array [
+            "id",
+            "child",
+          ],
+          "match": "SIMPLE",
+          "name": "users_f_constraint",
+          "onDelete": "CASCADE",
+          "onUpdate": "RESTRICT",
+          "references": Object {
+            "columns": Array [
+              "parent",
+              "id",
+            ],
+            "table": "MetalizeSchema.users_child",
+          },
+        },
+      ],
+      "indexes": Array [
+        Object {
+          "columns": Array [
+            "id",
+            "child",
+          ],
+          "name": "index_name",
+        },
+      ],
+      "name": "MetalizeSchema.users",
+      "primaryKey": Object {
+        "columns": Array [
+          "id",
+        ],
+        "name": "users_pkey",
+      },
+      "unique": Array [
+        Object {
+          "columns": Array [
+            "name",
+            "age",
+          ],
+          "name": "users_u_constraint",
+        },
+      ],
+    },
+  },
+}
+`;
