@@ -33,17 +33,9 @@ interface IdentityMetadata extends SequenceMetadata {
   generation: 'ALWAYS' | 'BY DEFAULT'
 }
 
-interface ColumnType {
-  name: string,
-  raw: string,
-  length?: number,
-  precision?: number,
-  scale?: number,
-}
-
 interface Column {
   name: string,
-  type: ColumnType,
+  type: string,
   nullable: boolean,
   default:  string,
   identity?: IdentityMetadata,
@@ -82,8 +74,10 @@ interface ReadOptions {
 }
 
 interface ReadResult {
-  tables: Record<string, TableMetadata | undefined>,
-  sequences: Record<string, SequenceMetadata | undefined>,
+  // @ts-ignore
+  tables: Map<string, TableMetadata | undefined>,
+  // @ts-ignore
+  sequences: Map<string, SequenceMetadata | undefined>,
 }
 
 declare class Metalize {

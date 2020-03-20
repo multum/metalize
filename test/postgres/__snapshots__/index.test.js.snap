@@ -33,12 +33,7 @@ Object {
           "identity": null,
           "name": "id",
           "nullable": false,
-          "type": Object {
-            "name": "bigint",
-            "precision": 64,
-            "raw": "bigint",
-            "scale": 0,
-          },
+          "type": "bigint",
         },
         Object {
           "collate": null,
@@ -46,12 +41,7 @@ Object {
           "identity": null,
           "name": "budget",
           "nullable": true,
-          "type": Object {
-            "name": "numeric",
-            "precision": 16,
-            "raw": "numeric(16,3)",
-            "scale": 3,
-          },
+          "type": "numeric(16,3)",
         },
         Object {
           "collate": null,
@@ -59,12 +49,7 @@ Object {
           "identity": null,
           "name": "child",
           "nullable": true,
-          "type": Object {
-            "name": "bigint",
-            "precision": 64,
-            "raw": "bigint",
-            "scale": 0,
-          },
+          "type": "bigint",
         },
         Object {
           "collate": null,
@@ -72,11 +57,7 @@ Object {
           "identity": null,
           "name": "name",
           "nullable": true,
-          "type": Object {
-            "length": 255,
-            "name": "character varying",
-            "raw": "character varying(255)",
-          },
+          "type": "character varying(255)",
         },
         Object {
           "collate": null,
@@ -91,12 +72,7 @@ Object {
           },
           "name": "age",
           "nullable": false,
-          "type": Object {
-            "name": "smallint",
-            "precision": 16,
-            "raw": "smallint",
-            "scale": 0,
-          },
+          "type": "smallint",
         },
       ],
       "foreignKeys": Array [
