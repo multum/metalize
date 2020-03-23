@@ -5,79 +5,79 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-declare type Dialect = 'postgres' | 'mysql'
+declare type Dialect = 'postgres' | 'mysql';
 
 interface MetalizeOptions {
-  dialect: Dialect,
-  connectionConfig?: Object,
-  client?: Object
+  dialect: Dialect;
+  connectionConfig?: Object;
+  client?: Object;
 }
 
 interface Reference {
-  table: string,
-  columns: string[],
+  table: string;
+  columns: string[];
 }
 
-declare type ActionType = 'CASCADE' | 'RESTRICT' | 'NO ACTION'
+declare type ActionType = 'CASCADE' | 'RESTRICT' | 'NO ACTION';
 
 interface ForeignKey {
-  name: String
-  columns: string[]
-  match: 'FULL' | 'PARTIAL' | 'SIMPLE',
-  onDelete: ActionType,
-  onUpdate: ActionType,
-  references: Reference
+  name: String;
+  columns: string[];
+  match: 'FULL' | 'PARTIAL' | 'SIMPLE';
+  onDelete: ActionType;
+  onUpdate: ActionType;
+  references: Reference;
 }
 
 interface IdentityMetadata extends SequenceMetadata {
-  generation: 'ALWAYS' | 'BY DEFAULT'
+  generation: 'ALWAYS' | 'BY DEFAULT';
 }
 
 interface Column {
-  name: string,
-  type: string,
-  nullable: boolean,
-  default:  string,
-  identity?: IdentityMetadata,
+  name: string;
+  type: string;
+  nullable: boolean;
+  default: string;
+  identity?: IdentityMetadata;
 }
 
 interface Index {
-  name: String,
-  columns: string[],
+  name: String;
+  columns: string[];
 }
 
 interface SequenceMetadata {
-  start: string,
-  min: string,
-  max: string,
-  increment: string,
-  cycle: boolean,
+  start: string;
+  min: string;
+  max: string;
+  increment: string;
+  cycle: boolean;
 }
 
 interface Check {
-  name: String,
-  condition: string
+  name: String;
+  condition: string;
 }
 
 interface TableMetadata {
-  columns: Column[],
-  primaryKey: Index,
-  unique: Index[],
-  indexes: Index[],
-  foreignKeys: ForeignKey[],
-  checks: Check[]
+  columns: Column[];
+  primaryKey: Index;
+  unique: Index[];
+  indexes: Index[];
+  foreignKeys: ForeignKey[];
+  checks: Check[];
 }
 
 interface ReadOptions {
-  tables?: string[],
-  sequences?: string[],
+  tables?: string[];
+  sequences?: string[];
 }
 
 interface ReadResult {
   // @ts-ignore
-  tables: Map<string, TableMetadata | undefined>,
+  tables: Map<string, TableMetadata | undefined>;
   // @ts-ignore
-  sequences: Map<string, SequenceMetadata | undefined>,
+  sequences: Map<string, SequenceMetadata | undefined>;
 }
 
 declare class Metalize {
@@ -85,7 +85,7 @@ declare class Metalize {
 
   read(options: ReadOptions): Promise<ReadResult>;
 
-  end(): Promise<void>
+  end(): Promise<void>;
 }
 
 export = Metalize;

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`'postgres' dialect [ reading sequences ] 1`] = `
+exports[`'postgres' dialect sequence metadata 1`] = `
 Object {
   "sequences": Map {
     "MetalizeSchema.users_seq" => Object {
@@ -15,7 +15,7 @@ Object {
 }
 `;
 
-exports[`'postgres' dialect [ reading tables ] 1`] = `
+exports[`'postgres' dialect table metadata 1`] = `
 Object {
   "sequences": Map {},
   "tables": Map {

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`'mysql' dialect [ reading tables ] 1`] = `
+exports[`'mysql' dialect table metadata 1`] = `
 Object {
   "sequences": Map {},
   "tables": Map {

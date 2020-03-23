@@ -19,7 +19,7 @@ exports.setup = ({
   onGotAdditionalBlocks = () => null,
 }) => {
   const isPostgres = dialect === 'postgres';
-  const quote = isPostgres ? helpers.quoteObjectName : n => n;
+  const quote = isPostgres ? helpers.quoteObjectName : (n) => n;
 
   const table = (schema ? `${schema}.` : '') + 'users';
   const childTable = table + '_child';
@@ -78,14 +78,14 @@ exports.setup = ({
     return _query(metalize._client, queries);
   });
 
-  it(`[ reading tables ]`, function() {
+  it(`table metadata`, function () {
     return expect(
       metalize.read({ tables: [table] })
     ).resolves.toMatchSnapshot();
   });
 
   if (isPostgres) {
-    it(`[ reading sequences ]`, function() {
+    it(`sequence metadata`, function () {
       return expect(
         metalize.read({ sequences: [sequence] })
       ).resolves.toMatchSnapshot();

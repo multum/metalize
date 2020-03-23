@@ -1,8 +1,8 @@
 language: node_js
 node_js:
-  - "10"
+  - '10'
 addons:
-  postgresql: "10"
+  postgresql: '10'
 services:
   - mysql
 install:

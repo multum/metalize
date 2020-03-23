@@ -46,7 +46,7 @@ const metalize = new Metalize({
 
 metalize
   .read({ tables: ['public.users', 'public.events'] })
-  .then(result => console.log(result.tables));
+  .then((result) => console.log(result.tables));
 
 /**
 Map {
@@ -92,7 +92,7 @@ const metalize = new Metalize({
 
 metalize
   .read({ tables: ['public.users', 'public.events'] })
-  .then(result => console.log(result.tables));
+  .then((result) => console.log(result.tables));
 
 /**
 Map {
@@ -110,7 +110,7 @@ Map {
 
 metalize
   .read({ sequences: ['public.usersSeq'] })
-  .then(result => console.log(result.sequences));
+  .then((result) => console.log(result.sequences));
 
 /**
 Map {
