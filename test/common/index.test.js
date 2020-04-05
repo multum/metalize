@@ -12,7 +12,7 @@ describe('common', () => {
 
   test('missing dependency', () => {
     expect(() => {
-      new BaseConnectionManager()._loadDialectModule('missing--dependency');
+      new BaseConnectionManager().loadDialectModule('missing--dependency');
     }).toThrow(`Please install 'missing--dependency' package manually`);
   });
 });

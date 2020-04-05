@@ -1,15 +1,17 @@
 # Methods {docsify-ignore-all}
 
-## `read({ ['tables' | 'sequences']: String[] })`
+## find
 
-- Returns: `Promise<{ ['tables' | 'sequences']: Map<String, Metadata | undefined> }>`
+> metalize.find(objects, options)
 
-> see [table metadata](metadata/table.md) and [sequence metadata](metadata/sequence.md)
+| Option              | Type       | Default | Required |
+| ------------------- | ---------- | ------- | -------- |
+| `objects`           | `object`   | `null`  | `true`   |
+| `objects.tables`    | `string[]` | `[]`    | `false`  |
+| `objects.sequences` | `string[]` | `[]`    | `false`  |
+| `options`           | `object`   | `null`  | `false`  |
+| `options.client`    | `object`   | `null`  | `false`  |
+
+Returns: _Promise<[Result](result.md)>_
 
 Getting the metadata of an existing objects
-
-## `end()`
-
-- Returns: `Promise<void>`
-
-Closing database connection

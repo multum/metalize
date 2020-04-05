@@ -1,9 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`'mysql' dialect table metadata 1`] = `
-Object {
+Result {
   "sequences": Map {},
   "tables": Map {
+    "metalize_schema.undefined_table" => undefined,
     "metalize_schema.users" => Object {
       "columns": Array [
         Object {
@@ -76,6 +77,7 @@ Object {
           "name": "age_index",
         },
       ],
+      "name": "metalize_schema.users",
       "primaryKey": Object {
         "columns": Array [
           "id",

@@ -12,6 +12,18 @@ const _query = (client, queries) => {
     );
 };
 
+const getClient = async (dialect, config) => {
+  if (dialect === 'postgres') {
+    const { Client } = require('pg');
+    const client = new Client(config);
+    await client.connect();
+    return client;
+  } else if (dialect === 'mysql') {
+    const lib = require('mysql2/promise');
+    return lib.createConnection(config);
+  }
+};
+
 exports.setup = ({
   schema,
   dialect,
@@ -21,7 +33,12 @@ exports.setup = ({
   const isPostgres = dialect === 'postgres';
   const quote = isPostgres ? helpers.quoteObjectName : (n) => n;
 
-  const table = (schema ? `${schema}.` : '') + 'users';
+  const schemaPrefix = schema ? `${schema}.` : '';
+
+  const undefinedTable = schemaPrefix + 'undefined_table';
+  const undefinedSequence = schemaPrefix + 'undefined_seq';
+
+  const table = schemaPrefix + 'users';
   const childTable = table + '_child';
   const sequence = table + '_seq';
 
@@ -37,7 +54,9 @@ exports.setup = ({
 
   const metalize = new Metalize({ dialect, connectionConfig });
 
-  beforeAll(() => {
+  let client;
+  beforeAll(async () => {
+    client = await getClient(dialect, connectionConfig);
     const queries = [
       schema ? `create schema if not exists ${quote(schema)};` : null,
       `drop table if exists ${quotedTable};`,
@@ -75,33 +94,56 @@ exports.setup = ({
       );
     }
 
-    return _query(metalize._client, queries);
+    return _query(client, queries);
   });
 
-  it(`table metadata`, function () {
-    return expect(
-      metalize.read({ tables: [table] })
-    ).resolves.toMatchSnapshot();
+  it(`table metadata`, async function () {
+    {
+      const result = await metalize.find({ tables: [undefinedTable] });
+      expect(result.tables).toHaveProperty('size', 1);
+      expect(result.tables.get(undefinedTable)).toBeUndefined();
+    }
+
+    {
+      const result = await metalize.find({ tables: [undefinedTable, table] });
+      expect(result).toMatchSnapshot();
+    }
   });
 
   if (isPostgres) {
-    it(`sequence metadata`, function () {
-      return expect(
-        metalize.read({ sequences: [sequence] })
-      ).resolves.toMatchSnapshot();
+    it(`sequence metadata`, async function () {
+      {
+        const result = await metalize.find({
+          sequences: [undefinedSequence],
+        });
+        expect(result.sequences).toHaveProperty('size', 1);
+        expect(result.sequences.get(undefinedSequence)).toBeUndefined();
+      }
+      {
+        const result = await metalize.find({
+          sequences: [undefinedSequence, sequence],
+        });
+        expect(result).toMatchSnapshot();
+      }
     });
   }
+
+  it('using external client', async function () {
+    const result = await metalize.find({ tables: [table] }, { client });
+    expect(result.tables.get(table)).toBeDefined();
+    await client.query('select 1'); // connection check
+  });
 
   onGotAdditionalBlocks(metalize);
 
   afterAll(async () => {
     if (schema) {
-      await _query(metalize._client, [
+      await _query(client, [
         isPostgres
           ? `drop schema if exists ${schema} cascade`
           : `drop schema if exists ${schema}`,
       ]);
     }
-    return metalize.end();
+    return client.end();
   });
 };

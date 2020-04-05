@@ -45,19 +45,22 @@ const metalize = new Metalize({
 });
 
 metalize
-  .read({ tables: ['public.users', 'public.events'] })
+  .find({ tables: ['public.users', 'public.events'] })
   .then((result) => console.log(result.tables));
 
 /**
-Map {
-  'public.users' => {
-      columns: [ ... ],
-      primaryKey: { ... },
-      foreignKeys: [ ... ],
-      unique: [ ... ],
-      indexes: [ ... ]
-  },
-  'public.events' => { ... }
+Result {
+  'tables': Map {
+    'public.users' => {
+        columns: [ ... ],
+        primaryKey: { ... },
+        foreignKeys: [ ... ],
+        unique: [ ... ],
+        indexes: [ ... ]
+    },
+    'public.events' => { ... }
+  }
+  'sequences': Map {}
 }
 */
 ```
@@ -91,35 +94,41 @@ const metalize = new Metalize({
 });
 
 metalize
-  .read({ tables: ['public.users', 'public.events'] })
-  .then((result) => console.log(result.tables));
+  .find({ tables: ['public.users', 'public.events'] })
+  .then((result) => console.log(result));
 
 /**
-Map {
-  'public.users' => {
-      columns: [ ... ],
-      primaryKey: { ... },
-      foreignKeys: [ ... ],
-      unique: [ ... ],
-      indexes: [ ... ],
-      checks: [ ... ]
-  },
-  'public.events' => { ... }
+Result {
+  'tables': Map {
+    'public.users' => {
+        columns: [ ... ],
+        primaryKey: { ... },
+        foreignKeys: [ ... ],
+        unique: [ ... ],
+        indexes: [ ... ],
+        checks: [ ... ]
+    },
+    'public.events' => { ... }
+  }
+  'sequences': Map {}
 }
 */
 
 metalize
-  .read({ sequences: ['public.usersSeq'] })
-  .then((result) => console.log(result.sequences));
+  .find({ sequences: ['public.usersSeq'] })
+  .then((result) => console.log(result));
 
 /**
-Map {
-  'public.usersSeq' => {
+Result {
+  'tables': Map {}
+  'sequences': Map {
+    'public.usersSeq' => {
       start: '1',
       min: '1',
       max: '9999',
       increment: '1',
       cycle: true,
+    }
   }
 }
 */

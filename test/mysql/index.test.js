@@ -21,7 +21,7 @@ describe(`'${options.dialect}' dialect`, () => {
     onGotAdditionalBlocks: (metalize) => {
       test('unsupported sequence reading', () => {
         return expect(
-          metalize.read({ sequences: ['sequence_name'] })
+          metalize.find({ sequences: ['sequence_name'] })
         ).rejects.toThrow(
           `Reading a sequence for the '${options.dialect}' dialect is not supported`
         );

@@ -1,5 +1,9 @@
 # Sequence
 
+## name
+
+- Type: `string`
+
 ## start
 
 - Type: `String`

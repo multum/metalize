@@ -1,5 +1,9 @@
 # Table
 
+## name
+
+- Type: `string`
+
 ## [columns](metadata/column.md)
 
 - Type: `Object[]`

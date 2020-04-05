@@ -10,7 +10,6 @@ declare type Dialect = 'postgres' | 'mysql';
 interface MetalizeOptions {
   dialect: Dialect;
   connectionConfig?: Object;
-  client?: Object;
 }
 
 interface Reference {
@@ -21,7 +20,7 @@ interface Reference {
 declare type ActionType = 'CASCADE' | 'RESTRICT' | 'NO ACTION';
 
 interface ForeignKey {
-  name: String;
+  name: string;
   columns: string[];
   match: 'FULL' | 'PARTIAL' | 'SIMPLE';
   onDelete: ActionType;
@@ -29,24 +28,20 @@ interface ForeignKey {
   references: Reference;
 }
 
-interface IdentityMetadata extends SequenceMetadata {
-  generation: 'ALWAYS' | 'BY DEFAULT';
-}
-
 interface Column {
   name: string;
   type: string;
   nullable: boolean;
   default: string;
-  identity?: IdentityMetadata;
+  identity?: Identity;
 }
 
 interface Index {
-  name: String;
+  name: string;
   columns: string[];
 }
 
-interface SequenceMetadata {
+interface SequenceAttributes {
   start: string;
   min: string;
   max: string;
@@ -54,12 +49,21 @@ interface SequenceMetadata {
   cycle: boolean;
 }
 
+interface Identity extends SequenceAttributes {
+  generation: 'ALWAYS' | 'BY DEFAULT';
+}
+
+interface Sequence extends SequenceAttributes {
+  name: string;
+}
+
 interface Check {
-  name: String;
+  name: string;
   condition: string;
 }
 
-interface TableMetadata {
+interface Table {
+  name: string;
   columns: Column[];
   primaryKey: Index;
   unique: Index[];
@@ -68,24 +72,25 @@ interface TableMetadata {
   checks: Check[];
 }
 
-interface ReadOptions {
+interface FindObjects {
   tables?: string[];
   sequences?: string[];
 }
 
-interface ReadResult {
+interface FindOptions {
+  client?: object;
+}
+
+interface Result {
   // @ts-ignore
-  tables: Map<string, TableMetadata | undefined>;
+  tables: Map<string, Table | undefined>;
   // @ts-ignore
-  sequences: Map<string, SequenceMetadata | undefined>;
+  sequences: Map<string, Sequence | undefined>;
 }
 
 declare class Metalize {
   constructor(options: MetalizeOptions);
-
-  read(options: ReadOptions): Promise<ReadResult>;
-
-  end(): Promise<void>;
+  find(objects: FindObjects, options?: FindOptions): Promise<Result>;
 }
 
 export = Metalize;

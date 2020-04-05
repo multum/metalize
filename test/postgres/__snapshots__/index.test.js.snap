@@ -1,13 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`'postgres' dialect sequence metadata 1`] = `
-Object {
+Result {
   "sequences": Map {
+    "MetalizeSchema.undefined_seq" => undefined,
     "MetalizeSchema.users_seq" => Object {
       "cycle": true,
       "increment": "1",
       "max": "9999",
       "min": "100",
+      "name": "MetalizeSchema.users_seq",
       "start": "100",
     },
   },
@@ -16,9 +18,10 @@ Object {
 `;
 
 exports[`'postgres' dialect table metadata 1`] = `
-Object {
+Result {
   "sequences": Map {},
   "tables": Map {
+    "MetalizeSchema.undefined_table" => undefined,
     "MetalizeSchema.users" => Object {
       "checks": Array [
         Object {

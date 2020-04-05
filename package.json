@@ -30,11 +30,11 @@
   },
   "scripts": {
     "test": "jest",
-    "test/mysql": "jest test/mysql",
-    "test/postgres": "jest test/postgres",
+    "test:mysql": "jest test/mysql",
+    "test:postgres": "jest test/postgres",
     "eslint": "eslint --max-warnings=0 **/*.js",
     "format": "prettier --write .",
-    "docs::start": "docsify serve docs"
+    "docs:start": "docsify serve docs"
   },
   "license": "MIT",
   "devDependencies": {
@@ -42,11 +42,11 @@
     "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-prettier": "^3.1.2",
     "husky": "^4.2.3",
-    "jest": "^25.1.0",
-    "lint-staged": "^10.0.8",
+    "jest": "^25.2.7",
+    "lint-staged": "^10.1.2",
     "mysql2": "^2.1.0",
-    "pg": "^7.18.2",
-    "prettier": "^2.0.1"
+    "pg": "^8.0.0",
+    "prettier": "^2.0.2"
   },
   "husky": {
     "hooks": {
