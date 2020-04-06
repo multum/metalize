@@ -1,13 +1,19 @@
 <br/>
+<br/>
 
-![](https://multum.github.io/metalize/logo.svg)
+<p align='center'>
+  <img src='https://multum.github.io/metalize/logo.svg' alt='metalize' width='500px'>
+</p>
+<p align='center'>Node.js tool for easy work with <strong>database metadata</strong></p>
 
-Node.js tool for easy reading **database metadata**
+<p align='center'>
+  <img src='https://img.shields.io/travis/com/multum/metalize.svg?style=flat-square' alt=''>
+  <img src='https://img.shields.io/npm/l/metalize.svg?style=flat-square' alt=''>
+  <img src='https://img.shields.io/npm/v/metalize.svg?style=flat-square' alt=''>
+  <img src='https://img.shields.io/codecov/c/github/multum/metalize.svg?style=flat-square' alt=''>
+</p>
 
-![](https://img.shields.io/travis/com/multum/metalize.svg?style=flat-square)
-![](https://img.shields.io/npm/l/metalize.svg?style=flat-square)
-![](https://img.shields.io/npm/v/metalize.svg?style=flat-square)
-![](https://img.shields.io/codecov/c/github/multum/metalize.svg?style=flat-square)
+<br/>
 
 ## Features
 
@@ -132,6 +138,41 @@ Result {
   }
 }
 */
+```
+
+## Using an existing connection
+
+```javascript
+const Metalize = require('metalize');
+const { Client } = require('pg');
+
+const client = new Client({
+  host: '127.0.0.1',
+  port: 5432,
+  database: 'postgres',
+  user: 'postgres',
+  password: 'postgres'
+});
+
+client.connect()
+
+/**
+ * or using 'mysql' dialect
+ * @example
+ * const { createConnection } = require('mysql2/promise');
+ * const client = await createConnection(...)
+ */
+
+const metalize = new Metalize({ dialect: 'postgres' });
+
+metalize
+  .find({ tables: ['public.users'] }, { client })
+  .then((result) => console.log(result))
+
+/**
+ * A new connection will not be opened
+ * Instead, the connection from the 'options' will be used
+ */
 ```
 
 ## Contributing
