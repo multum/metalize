@@ -8,8 +8,8 @@
 
 <p align='center'>
   <img src='https://img.shields.io/travis/com/multum/metalize.svg?style=flat-square' alt=''>
-  <img src='https://img.shields.io/npm/l/metalize.svg?style=flat-square' alt=''>
-  <img src='https://img.shields.io/npm/v/metalize.svg?style=flat-square' alt=''>
+  <a href='https://github.com/multum/metalize/blob/master/LICENSE'><img src='https://img.shields.io/npm/l/metalize.svg?style=flat-square' alt=''></a>
+  <a href='https://www.npmjs.com/package/metalize'><img src='https://img.shields.io/npm/v/metalize.svg?style=flat-square' alt=''></a>
   <img src='https://img.shields.io/codecov/c/github/multum/metalize.svg?style=flat-square' alt=''>
 </p>
 
@@ -18,7 +18,7 @@
 ## Features
 
 - **PostgreSQL** and **MySQL** dialects
-- Reading **tables** (columns, indexes, primary keys, unique, foreign keys, checks)
+- Reading **tables** (columns, identity columns, indexes, primary keys, unique, foreign keys, checks)
 - Reading **sequences** (start, max, min, cycle, increment)
 
 ## Documentation
@@ -52,7 +52,7 @@ const metalize = new Metalize({
 
 metalize
   .find({ tables: ['public.users', 'public.events'] })
-  .then((result) => console.log(result.tables));
+  .then((result) => console.log(result));
 
 /**
 Result {
@@ -77,7 +77,7 @@ Result {
 
 - **[Node.js](https://nodejs.org)** **v8.10** or more
 - **[PostgreSQL server](https://www.postgresql.org/download)** **v9.5** or more
-- **[node-postgres](https://github.com/brianc/node-postgres)** **v7.1** or more
+- **[node-postgres](https://github.com/brianc/node-postgres)** **v7** or more
 
 > **Do not use quotes** in the name of the object. `metalize` automatically adds them when needed
 
@@ -151,10 +151,10 @@ const client = new Client({
   port: 5432,
   database: 'postgres',
   user: 'postgres',
-  password: 'postgres'
+  password: 'postgres',
 });
 
-client.connect()
+client.connect();
 
 /**
  * or using 'mysql' dialect
@@ -167,7 +167,7 @@ const metalize = new Metalize({ dialect: 'postgres' });
 
 metalize
   .find({ tables: ['public.users'] }, { client })
-  .then((result) => console.log(result))
+  .then((result) => console.log(result));
 
 /**
  * A new connection will not be opened

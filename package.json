@@ -19,11 +19,12 @@
     "types"
   ],
   "keywords": [
+    "mysql",
+    "postgres",
     "metalize",
     "database",
     "metadata",
-    "postgres",
-    "mysql"
+    "structure"
   ],
   "engines": {
     "node": ">=8.10"

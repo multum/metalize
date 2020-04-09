@@ -5,7 +5,7 @@
             <stop offset="1" stop-color="#928DAB"/>
         </radialGradient>
     </defs>
-    <title>metalize</title>
+    <title>Metalize</title>
     <path d="M49.82,0V54h-7.6V19.42L29.35,49.18H20.47L7.6,19.42V54H0V0H7.6V.26l17.31,40L42.22.26V0Z" fill="url(#a)"/>
     <path d="M91.14,0V7.56H65.29V30.44H81.55V38H65.29v8.43H91.14V54H62.47v-.08H57.73V0H91.14ZM62.47,54H57.73v-.08h4.74Z" fill="url(#a)"/>
     <path d="M142.32,0V7.56h-18V54h-7.52V7.56h-18V0Z" fill="url(#a)"/>

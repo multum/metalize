@@ -2,13 +2,13 @@
 
 ## dialect
 
-- Type: `'mysql'` | `'postgres'`
+- Type: `'postgres' | 'mysql'`
 - Default: `null`
 - Required: `true`
 
 ## connectionConfig
 
-- Type: `Object`
+- Type: `object`
 - Default: `null`
 - Required: `true`
 

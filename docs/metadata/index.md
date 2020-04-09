@@ -2,12 +2,12 @@
 
 ## name
 
-- Type: `String`
+- Type: `string`
 
 Index name
 
 ## columns
 
-- Type: `String[]`
+- Type: `string[]`
 
 List of column names

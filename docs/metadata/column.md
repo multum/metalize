@@ -2,13 +2,13 @@
 
 ## name
 
-- Type: `String`
+- Type: `string`
 
 Column name
 
 ## type
 
-- Type: `String`
+- Type: `string`
 
 > Examples: `'bigint', 'numeric(16, 0)', 'character varying(255)'`
 
@@ -16,13 +16,13 @@ SQL data type
 
 ## default
 
-- Type: `String`
+- Type: `string`
 
 Default value
 
 ## nullable
 
-- Type: `Boolean`
+- Type: `boolean`
 
 The column nullability
 
@@ -31,12 +31,12 @@ The column nullability
 !> `postgres` dialect requires version 10 or later
 
 - Types:
-  - PostgreSQL: `Object`
-  - MySQL: `Boolean`
+  - PostgreSQL: `object`
+  - MySQL: `boolean`
 
 ## identity.generation
 
-- Type: `String`
+- Type: `string`
 
 `ALWAYS` &#124; `BY DEFAULT`
 

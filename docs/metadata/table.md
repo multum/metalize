@@ -6,24 +6,24 @@
 
 ## [columns](metadata/column.md)
 
-- Type: `Object[]`
+- Type: `object[]`
 
 ## [primaryKey](metadata/primary-key.md)
 
-- Type: `Object`
+- Type: `object`
 
 ## [indexes](metadata/index.md)
 
-- Type: `Object[]`
+- Type: `object[]`
 
 ## [foreignKeys](metadata/foreign-key.md)
 
-- Type: `Object[]`
+- Type: `object[]`
 
 ## [unique](metadata/unique.md)
 
-- Type: `Object[]`
+- Type: `object[]`
 
 ## [checks](metadata/check.md)
 
-- Type: `Object[]`
+- Type: `object[]`

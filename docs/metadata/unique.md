@@ -2,12 +2,12 @@
 
 ## name
 
-- Type: `String`
+- Type: `string`
 
 Constraint name
 
 ## columns
 
-- Type: `String[]`
+- Type: `string[]`
 
 List of column names

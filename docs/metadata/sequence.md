@@ -6,30 +6,30 @@
 
 ## start
 
-- Type: `String`
+- Type: `string`
 
 Start value
 
 ## min
 
-- Type: `String`
+- Type: `string`
 
 Minimum value
 
 ## max
 
-- Type: `String`
+- Type: `string`
 
 Maximum value
 
 ## cycle
 
-- Type: `Boolean`
+- Type: `boolean`
 
 Sequence looping when max value is reached
 
 ## increment
 
-- Type: `String`
+- Type: `string`
 
 Determines which number will be added to the current value of the sequence

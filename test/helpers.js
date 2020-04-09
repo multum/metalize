@@ -1,15 +1,13 @@
 'use strict';
 
-const Metalize = require('../lib');
-const helpers = require('../lib/dialects/postgres/helpers');
+const Metalize = require('..');
+const PostgresHelpers = require('../lib/dialects/postgres/helpers');
 
-const _query = (client, queries) => {
-  return queries
-    .filter(Boolean)
-    .reduce(
-      (acc, query) => acc.then(() => client.query(query)),
-      Promise.resolve()
-    );
+const queryQueue = async (client, queries) => {
+  queries = queries.filter(Boolean);
+  for (const query of queries) {
+    await client.query(query);
+  }
 };
 
 const getClient = async (dialect, config) => {
@@ -31,7 +29,7 @@ exports.setup = ({
   onGotAdditionalBlocks = () => null,
 }) => {
   const isPostgres = dialect === 'postgres';
-  const quote = isPostgres ? helpers.quoteObjectName : (n) => n;
+  const quote = isPostgres ? PostgresHelpers.quoteObjectName : (n) => n;
 
   const schemaPrefix = schema ? `${schema}.` : '';
 
@@ -46,7 +44,7 @@ exports.setup = ({
   const quotedChildTable = quote(childTable);
   const quotedSequence = quote(sequence);
 
-  const _constraintNames = {
+  const constraintNames = {
     check: 'users_c_constraint',
     foreignKey: 'users_f_constraint',
     unique: 'users_u_constraint',
@@ -73,16 +71,16 @@ exports.setup = ({
           budget decimal(16, 3),
           age smallint not null,
           child bigint,
-          constraint ${_constraintNames.foreignKey} foreign key (id, child)
+          constraint ${constraintNames.foreignKey} foreign key (id, child)
             references ${quotedChildTable} (parent, id) on update restrict on delete cascade,
-          constraint ${_constraintNames.unique} unique (name, age)
+          constraint ${constraintNames.unique} unique (name, age)
         );`,
       `create index index_name on ${quotedTable} (id, child);`,
     ];
 
     if (isPostgres) {
       queries.push(
-        `alter table ${quotedTable} add constraint ${_constraintNames.check} check (age > 21)`,
+        `alter table ${quotedTable} add constraint ${constraintNames.check} check (age > 21)`,
         `alter table ${quotedTable} alter column age add generated always as identity ( start 100 minvalue 100 maxvalue 9999 no cycle increment 5 )`,
         `drop sequence if exists ${quotedSequence};`,
         `create sequence ${quotedSequence} start with 100 increment by 1 minvalue 100 maxvalue 9999 cycle;`
@@ -94,7 +92,7 @@ exports.setup = ({
       );
     }
 
-    return _query(client, queries);
+    return queryQueue(client, queries);
   });
 
   it(`table metadata`, async function () {
@@ -138,7 +136,7 @@ exports.setup = ({
 
   afterAll(async () => {
     if (schema) {
-      await _query(client, [
+      await queryQueue(client, [
         isPostgres
           ? `drop schema if exists ${schema} cascade`
           : `drop schema if exists ${schema}`,

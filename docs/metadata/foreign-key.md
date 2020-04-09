@@ -2,48 +2,48 @@
 
 ## name
 
-- Type: `String`
+- Type: `string`
 
 Constraint name
 
 ## columns
 
-- Type: `String[]`
+- Type: `string[]`
 
 List of column names
 
 ## references
 
-- Type: `Object`
+- Type: `object`
 
 Object with foreign table parameters
 
 ## references.table
 
-- Type: `String`
+- Type: `string`
 
 Foreign table name
 
 ## references.columns
 
-- Type: `String[]`
+- Type: `string[]`
 
 Foreign table column names
 
 ## match
 
-- Type: `String`
+- Type: `string`
 
 `SIMPLE`&#124;`FULL`&#124;`PARTIAL`
 
 ## onDelete
 
-- Type: `String`
+- Type: `string`
 
 `CASCADE`&#124;`RESTRICT`&#124;`NO ACTION`
 
 ## onUpdate
 
-- Type: `String`
+- Type: `string`
 
 `CASCADE`&#124;`RESTRICT`&#124;`NO ACTION`

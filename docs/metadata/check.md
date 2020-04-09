@@ -2,7 +2,7 @@
 
 ## name
 
-- Type: `String`
+- Type: `string`
 
 Constraint name
 

@@ -3,7 +3,7 @@
 - [Readme](/)
 - [Configuration](configuration.md)
 - [Methods](methods.md)
-- Metadata
+- [Result](result.md)
   - [Table](metadata/table.md)
   - [Sequence](metadata/sequence.md)
   - [Column](metadata/column.md)

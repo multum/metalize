@@ -9,7 +9,7 @@ declare type Dialect = 'postgres' | 'mysql';
 
 interface MetalizeOptions {
   dialect: Dialect;
-  connectionConfig?: Object;
+  connectionConfig?: object;
 }
 
 interface Reference {
@@ -78,7 +78,7 @@ interface FindObjects {
 }
 
 interface FindOptions {
-  client?: object;
+  client?: { query: Function };
 }
 
 interface Result {
@@ -90,6 +90,20 @@ interface Result {
 
 declare class Metalize {
   constructor(options: MetalizeOptions);
+
+  /**
+   * @example
+   * // using an automatically created connection
+   * await metalize.find({
+   *   tables: [ 'public.users' ],
+   *   sequences: [ 'public.users_seq' ]
+   * });
+   *
+   * // using an existent connection
+   * await metalize.find({
+   *   tables: [ 'public.users' ]);
+   * }, { client });
+   */
   find(objects: FindObjects, options?: FindOptions): Promise<Result>;
 }
 
