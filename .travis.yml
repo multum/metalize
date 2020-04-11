@@ -1,10 +1,8 @@
 language: node_js
 node_js:
   - '10'
-addons:
-  postgresql: '10'
-services:
-  - mysql
+before_script:
+  - docker-compose up -d
 install:
   - yarn
   - yarn add codecov

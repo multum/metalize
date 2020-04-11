@@ -8,7 +8,7 @@ const options = {
   dialect: 'mysql',
   connectionConfig: {
     host: 'localhost',
-    password: '',
+    password: 'mysql',
     user: 'root',
     port: 3306,
   },
