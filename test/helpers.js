@@ -2,6 +2,7 @@
 
 const Metalize = require('..');
 const PostgresHelpers = require('../lib/dialects/postgres/helpers');
+const configs = require('./connection-configs');
 
 const queryQueue = async (client, queries) => {
   queries = queries.filter(Boolean);
@@ -22,12 +23,9 @@ const getClient = async (dialect, config) => {
   }
 };
 
-exports.setup = ({
-  schema,
-  dialect,
-  connectionConfig,
-  onGotAdditionalBlocks = () => null,
-}) => {
+exports.setup = ({ schema, dialect, onGotAdditionalBlocks = () => null }) => {
+  const connectionConfig = configs[dialect];
+
   const isPostgres = dialect === 'postgres';
   const quote = isPostgres ? PostgresHelpers.quoteObjectName : (n) => n;
 
