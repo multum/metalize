@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3.3'
 services:
   postgres:
     image: postgres
@@ -6,11 +6,11 @@ services:
     environment:
       POSTGRES_PASSWORD: 'postgres'
     ports:
-      - '5432:5432'
+      - '25432:5432'
   mysql:
     image: mysql
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: 'mysql'
     ports:
-      - '3306:3306'
+      - '23306:3306'

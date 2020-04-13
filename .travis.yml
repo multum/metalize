@@ -1,11 +1,15 @@
+dist: xenial
 language: node_js
-node_js:
-  - '10'
+node_js: 10
 before_script:
   - docker-compose up -d
+  - docker run --net metalize_default jwilder/dockerize -wait tcp://postgres:5432 -wait tcp://mysql:3306 -timeout 2m
+cache: yarn
 install:
   - yarn
   - yarn add codecov
 script:
   - yarn test --coverage --verbose
   - codecov
+after_failure:
+  - docker logs
