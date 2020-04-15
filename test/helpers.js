@@ -12,15 +12,9 @@ const queryQueue = async (client, queries) => {
 };
 
 const getClient = async (dialect, config) => {
-  if (dialect === 'postgres') {
-    const { Client } = require('pg');
-    const client = new Client(config);
-    await client.connect();
-    return client;
-  } else if (dialect === 'mysql') {
-    const lib = require('mysql2/promise');
-    return lib.createConnection(config);
-  }
+  return require(`../lib/dialects/${dialect}/connection-manager`).getClient({
+    connectionConfig: config,
+  });
 };
 
 exports.setup = ({ schema, dialect, onGotAdditionalBlocks = () => null }) => {

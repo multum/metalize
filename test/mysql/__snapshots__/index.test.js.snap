@@ -65,16 +65,16 @@ Result {
       "indexes": Array [
         Object {
           "columns": Array [
+            "age",
+          ],
+          "name": "age_index",
+        },
+        Object {
+          "columns": Array [
             "id",
             "child",
           ],
           "name": "index_name",
-        },
-        Object {
-          "columns": Array [
-            "age",
-          ],
-          "name": "age_index",
         },
       ],
       "name": "metalize_schema.users",

@@ -1,7 +1,9 @@
 'use strict';
 
 const Metalize = require('../../lib');
-const BaseConnectionManager = require('../../lib/dialects/base/connection-maneger');
+const {
+  getManuallyInstalledModule,
+} = require('../../lib/dialects/common/helpers');
 
 describe('common', () => {
   test('unsupported dialect', () => {
@@ -12,7 +14,7 @@ describe('common', () => {
 
   test('missing dependency', () => {
     expect(() => {
-      new BaseConnectionManager().loadDialectModule('missing--dependency');
+      getManuallyInstalledModule('missing--dependency');
     }).toThrow(`Please install 'missing--dependency' package manually`);
   });
 });
