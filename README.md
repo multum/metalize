@@ -7,7 +7,6 @@
 <p align='center'>Node.js tool for easy work with <strong>database metadata</strong></p>
 
 <p align='center'>
-  <img src='https://img.shields.io/travis/com/multum/metalize.svg?style=flat-square' alt=''>
   <a href='https://github.com/multum/metalize/blob/master/LICENSE'><img src='https://img.shields.io/npm/l/metalize.svg?style=flat-square' alt=''></a>
   <a href='https://www.npmjs.com/package/metalize'><img src='https://img.shields.io/npm/v/metalize.svg?style=flat-square' alt=''></a>
   <img src='https://img.shields.io/codecov/c/github/multum/metalize.svg?style=flat-square' alt=''>

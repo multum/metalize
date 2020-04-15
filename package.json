@@ -33,9 +33,9 @@
     "test": "jest",
     "test:mysql": "jest test/mysql",
     "test:postgres": "jest test/postgres",
-    "eslint": "eslint --max-warnings=0 **/*.js",
+    "lint": "eslint --max-warnings=0 **/*.js",
     "format": "prettier --write .",
-    "docs:start": "docsify serve docs"
+    "docs": "docsify serve docs"
   },
   "license": "MIT",
   "devDependencies": {
