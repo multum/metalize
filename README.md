@@ -7,100 +7,56 @@
 <p align='center'>Node.js tool for easy work with <strong>database metadata</strong></p>
 
 <p align='center'>
-  <a href='https://github.com/multum/metalize/blob/master/LICENSE'><img src='https://img.shields.io/npm/l/metalize.svg?style=flat-square' alt=''></a>
-  <a href='https://www.npmjs.com/package/metalize'><img src='https://img.shields.io/npm/v/metalize.svg?style=flat-square' alt=''></a>
-  <img src='https://img.shields.io/codecov/c/github/multum/metalize.svg?style=flat-square' alt=''>
+  <img src='https://github.com/multum/metalize/workflows/Lint%20and%20test/badge.svg' alt=''/>
+  <a href='https://github.com/multum/metalize/blob/master/LICENSE'><img src='https://img.shields.io/npm/l/metalize.svg?style=flat' alt=''></a>
+  <a href='https://www.npmjs.com/package/metalize'><img src='https://img.shields.io/npm/v/metalize.svg?style=flat' alt=''></a>
+  <img src='https://img.shields.io/codecov/c/github/multum/metalize.svg?style=flat' alt=''>
 </p>
 
 <br/>
 
 ## Features
 
+- Fully tested
+- Fully documented
 - **PostgreSQL** and **MySQL** dialects
-- Reading **tables** (columns, identity columns, indexes, primary keys, unique, foreign keys, checks)
-- Reading **sequences** (start, max, min, cycle, increment)
+- [**Tables**](https://multum.github.io/metalize/#/metadata/table)
+  - Detailed [column](https://multum.github.io/metalize/#/metadata/column) metadata
+  - Multi-column constraints
+  - [Indexes](https://multum.github.io/metalize/#/metadata/index)
+- [**Sequences**](https://multum.github.io/metalize/#/metadata/sequence)
 
 ## Documentation
 
 - [Documentation](https://multum.github.io/metalize/#/)
 - [Contributing](https://github.com/multum/metalize/blob/master/CONTRIBUTING.md)
 
-## Getting started with MySQL
-
-#### Requires:
-
-- **[Node.js](https://nodejs.org)** **v8.10** or more
-- **[MySQL server](https://dev.mysql.com/downloads/mysql/)** **v5.6** or more
-- **[node-mysql2](https://github.com/sidorares/node-mysql2)**
+## Getting Started
 
 ```bash
-npm install metalize mysql2
+npm install metalize pg       # postgres
+npm install metalize mysql2   # mysql
 ```
+
+> **Do not use quotes** in the name of the object. `Metalize` automatically adds them when needed
 
 ```javascript
 const Metalize = require('metalize');
 
 const metalize = new Metalize({
-  dialect: 'mysql',
-  connectionConfig: {
-    host: '127.0.0.1',
-    user: 'root',
-    database: 'public',
-    port: 3306,
-  },
-});
-
-metalize
-  .find({ tables: ['public.users', 'public.events'] })
-  .then((result) => console.log(result));
-
-/**
-Result {
-  'tables': Map {
-    'public.users' => {
-        columns: [ ... ],
-        primaryKey: { ... },
-        foreignKeys: [ ... ],
-        unique: [ ... ],
-        indexes: [ ... ]
-    },
-    'public.events' => { ... }
-  }
-  'sequences': Map {}
-}
-*/
-```
-
-## Getting started with PostgreSQL
-
-#### Requires:
-
-- **[Node.js](https://nodejs.org)** **v8.10** or more
-- **[PostgreSQL server](https://www.postgresql.org/download)** **v9.5** or more
-- **[node-postgres](https://github.com/brianc/node-postgres)** **v7** or more
-
-> **Do not use quotes** in the name of the object. `metalize` automatically adds them when needed
-
-```bash
-npm install metalize pg
-```
-
-```javascript
-const Metalize = require('metalize');
-
-const metalize = new Metalize({
-  dialect: 'postgres',
+  dialect: 'postgres', // one of [ 'postgres', 'mysql' ]
   connectionConfig: {
     host: '127.0.0.1',
     port: 5432,
-    database: 'postgres',
-    user: 'postgres',
-    password: 'postgres',
+    // other connection options for dialect
   },
 });
 
 metalize
-  .find({ tables: ['public.users', 'public.events'] })
+  .find({
+    tables: ['public.users', 'public.events'],
+    sequences: ['public.usersSeq'], // only for 'postgres' dialect
+  })
   .then((result) => console.log(result));
 
 /**
@@ -116,17 +72,6 @@ Result {
     },
     'public.events' => { ... }
   }
-  'sequences': Map {}
-}
-*/
-
-metalize
-  .find({ sequences: ['public.usersSeq'] })
-  .then((result) => console.log(result));
-
-/**
-Result {
-  'tables': Map {}
   'sequences': Map {
     'public.usersSeq' => {
       start: '1',
@@ -177,4 +122,4 @@ metalize
 
 ## License
 
-**metalize** is open source software [licensed as MIT](https://github.com/multum/metalize/blob/master/LICENSE).
+**Metalize** is open source software [licensed as MIT](https://github.com/multum/metalize/blob/master/LICENSE).
