@@ -6,6 +6,7 @@ Result {
   "tables": Map {
     "metalize_schema.undefined_table" => undefined,
     "metalize_schema.users" => Object {
+      "checks": Array [],
       "columns": Array [
         Object {
           "default": null,

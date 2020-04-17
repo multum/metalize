@@ -78,7 +78,7 @@ interface FindObjects {
 }
 
 interface FindOptions {
-  client?: { query: Function };
+  client?: object;
 }
 
 interface Result {

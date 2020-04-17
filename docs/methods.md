@@ -1,8 +1,8 @@
-# Methods {docsify-ignore-all}
+# Methods {docsify-ignore}
 
 ## find
 
-> metalize.find(objects, options)
+> Metalize.prototype.find(objects, options)
 
 | Option              | Type       | Default | Required |
 | ------------------- | ---------- | ------- | -------- |
