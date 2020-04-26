@@ -2,22 +2,6 @@
   "name": "metalize",
   "version": "0.1.1",
   "description": "Node.js tool for easy work with database metadata",
-  "author": {
-    "name": "Andrew Vereshchak",
-    "email": "andrew.vereshchak@gmail.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/multum/metalize.git"
-  },
-  "homepage": "https://multum.github.io/metalize",
-  "bugs": "https://github.com/multum/metalize/issues",
-  "main": "lib/index.js",
-  "types": "types/index.d.ts",
-  "files": [
-    "lib",
-    "types"
-  ],
   "keywords": [
     "mysql",
     "postgres",
@@ -26,28 +10,30 @@
     "metadata",
     "structure"
   ],
-  "engines": {
-    "node": ">=8.10"
-  },
-  "scripts": {
-    "test": "jest",
-    "test:mysql": "jest test/mysql",
-    "test:postgres": "jest test/postgres",
-    "lint": "eslint --max-warnings=0 **/*.js",
-    "format": "prettier --write .",
-    "docs": "docsify serve docs"
+  "homepage": "https://multum.github.io/metalize",
+  "bugs": "https://github.com/multum/metalize/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/multum/metalize.git"
   },
   "license": "MIT",
-  "devDependencies": {
-    "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.10.1",
-    "eslint-plugin-prettier": "^3.1.2",
-    "husky": "^4.2.3",
-    "jest": "^25.2.7",
-    "lint-staged": "^10.1.2",
-    "mysql2": "^2.1.0",
-    "pg": "^8.0.0",
-    "prettier": "^2.0.2"
+  "author": {
+    "name": "Andrew Vereshchak",
+    "email": "andrew.vereshchak@gmail.com"
+  },
+  "main": "lib/index.js",
+  "types": "types/index.d.ts",
+  "files": [
+    "lib",
+    "types"
+  ],
+  "scripts": {
+    "docs": "docsify serve docs",
+    "format": "prettier --write .",
+    "lint": "eslint --max-warnings=0 **/*.js",
+    "test": "jest",
+    "test:mysql": "jest test/mysql",
+    "test:postgres": "jest test/postgres"
   },
   "husky": {
     "hooks": {
@@ -60,9 +46,23 @@
       "eslint",
       "git add"
     ],
-    "*.{md,html}": [
+    "*.{ts,md,html,css}": [
       "prettier --write",
       "git add"
     ]
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.3",
+    "husky": "^4.2.5",
+    "jest": "^25.4.0",
+    "lint-staged": "^10.1.7",
+    "mysql2": "^2.1.0",
+    "pg": "^8.0.3",
+    "prettier": "^2.0.5"
+  },
+  "engines": {
+    "node": ">=8.10"
   }
 }
