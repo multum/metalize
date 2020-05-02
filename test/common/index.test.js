@@ -8,7 +8,7 @@ const {
 describe('common', () => {
   test('unsupported dialect', () => {
     expect(() => {
-      new Metalize({ dialect: 'mongodb' });
+      new Metalize('mongodb');
     }).toThrow(`Dialect 'mongodb' is not supported`);
   });
 

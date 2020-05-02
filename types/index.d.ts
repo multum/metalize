@@ -94,6 +94,7 @@ interface Result {
 }
 
 declare class Metalize {
+  constructor(dialect: Dialect);
   constructor(options: MetalizeOptions);
 
   /**

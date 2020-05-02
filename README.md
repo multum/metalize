@@ -108,7 +108,7 @@ client.connect();
  * const client = await createConnection(...)
  */
 
-const metalize = new Metalize({ dialect: 'postgres' });
+const metalize = new Metalize('postgres');
 
 metalize
   .find({ tables: ['public.users'] }, { client })
