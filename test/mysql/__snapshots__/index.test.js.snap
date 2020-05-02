@@ -50,7 +50,7 @@ Result {
             "id",
             "child",
           ],
-          "match": "NONE",
+          "match": "SIMPLE",
           "name": "users_f_constraint",
           "onDelete": "CASCADE",
           "onUpdate": "RESTRICT",

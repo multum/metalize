@@ -31,8 +31,8 @@ The column nullability
 !> `postgres` dialect requires version 10 or later
 
 - Types:
-  - PostgreSQL: `object`
   - MySQL: `boolean`
+  - PostgreSQL: `object`
 
 ## identity.generation
 
@@ -40,4 +40,6 @@ The column nullability
 
 `ALWAYS` &#124; `BY DEFAULT`
 
-## [identity.[sequence option]](metadata/sequence.md)
+## [identity.[sequence property]](metadata/sequence.md)
+
+Sequence properties expect `name`

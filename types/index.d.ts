@@ -17,12 +17,17 @@ interface Reference {
   columns: string[];
 }
 
-declare type ActionType = 'CASCADE' | 'RESTRICT' | 'NO ACTION';
+declare type ActionType =
+  | 'NO ACTION'
+  | 'RESTRICT'
+  | 'CASCADE'
+  | 'SET NULL'
+  | 'SET DEFAULT';
 
 interface ForeignKey {
   name: string;
   columns: string[];
-  match: 'FULL' | 'PARTIAL' | 'SIMPLE';
+  match: 'SIMPLE' | 'PARTIAL' | 'FULL';
   onDelete: ActionType;
   onUpdate: ActionType;
   references: Reference;

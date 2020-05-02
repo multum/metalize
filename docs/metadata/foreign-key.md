@@ -12,12 +12,6 @@ Constraint name
 
 List of column names
 
-## references
-
-- Type: `object`
-
-Object with foreign table parameters
-
 ## references.table
 
 - Type: `string`
@@ -34,16 +28,17 @@ Foreign table column names
 
 - Type: `string`
 
-`SIMPLE`&#124;`FULL`&#124;`PARTIAL`
+  - MySQL: **always `SIMPLE`**
+  - PostgreSQL: **`SIMPLE` &#124; `FULL` &#124; `PARTIAL`**
 
 ## onDelete
 
 - Type: `string`
 
-`CASCADE`&#124;`RESTRICT`&#124;`NO ACTION`
+**`NO ACTION` &#124; `RESTRICT` &#124; `CASCADE` &#124; `SET NULL` &#124; `SET DEFAULT`**
 
 ## onUpdate
 
 - Type: `string`
 
-`CASCADE`&#124;`RESTRICT`&#124;`NO ACTION`
+**`NO ACTION` &#124; `RESTRICT` &#124; `CASCADE` &#124; `SET NULL` &#124; `SET DEFAULT`**
