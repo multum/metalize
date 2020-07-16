@@ -12,38 +12,12 @@ interface MetalizeOptions {
   connectionConfig?: object;
 }
 
-interface Reference {
-  table: string;
-  columns: string[];
-}
-
-declare type ActionType =
-  | 'NO ACTION'
-  | 'RESTRICT'
-  | 'CASCADE'
-  | 'SET NULL'
-  | 'SET DEFAULT';
-
-interface ForeignKey {
-  name: string;
-  columns: string[];
-  match: 'SIMPLE' | 'PARTIAL' | 'FULL';
-  onDelete: ActionType;
-  onUpdate: ActionType;
-  references: Reference;
-}
-
 interface Column {
   name: string;
   type: string;
   nullable: boolean;
   default: string;
   identity?: Identity;
-}
-
-interface Index {
-  name: string;
-  columns: string[];
 }
 
 interface SequenceAttributes {
@@ -62,16 +36,51 @@ interface Sequence extends SequenceAttributes {
   name: string;
 }
 
+interface PrimaryKey {
+  name: string;
+  columns: string[];
+}
+
+declare type ActionType =
+  | 'NO ACTION'
+  | 'RESTRICT'
+  | 'CASCADE'
+  | 'SET NULL'
+  | 'SET DEFAULT';
+
+interface ForeignKey {
+  name: string;
+  columns: string[];
+  match: 'SIMPLE' | 'PARTIAL' | 'FULL';
+  onDelete: ActionType;
+  onUpdate: ActionType;
+  references: {
+    table: string;
+    columns: string[];
+  };
+}
+
+interface Unique {
+  name: string;
+  columns: string[];
+}
+
 interface Check {
   name: string;
   condition: string;
 }
 
+interface Index {
+  name: string;
+  columns: string[];
+  using: 'btree' | 'hash' | 'gist' | 'gin';
+}
+
 interface Table {
   name: string;
   columns: Column[];
-  primaryKey: Index;
-  unique: Index[];
+  primaryKey: PrimaryKey;
+  unique: Unique[];
   indexes: Index[];
   foreignKeys: ForeignKey[];
   checks: Check[];

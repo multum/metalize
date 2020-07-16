@@ -77,6 +77,14 @@ Result {
           "nullable": true,
           "type": "bigint",
         },
+        Object {
+          "collate": null,
+          "default": null,
+          "identity": null,
+          "name": "ts_vector",
+          "nullable": true,
+          "type": "tsvector",
+        },
       ],
       "foreignKeys": Array [
         Object {
@@ -103,7 +111,15 @@ Result {
             "id",
             "child",
           ],
-          "name": "index_name",
+          "name": "id_child_idx",
+          "using": "btree",
+        },
+        Object {
+          "columns": Array [
+            "ts_vector",
+          ],
+          "name": "ts_vector_idx",
+          "using": "gin",
         },
       ],
       "name": "MetalizeSchema.users",

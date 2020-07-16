@@ -69,13 +69,15 @@ Result {
             "age",
           ],
           "name": "age_index",
+          "using": "btree",
         },
         Object {
           "columns": Array [
             "id",
             "child",
           ],
-          "name": "index_name",
+          "name": "id_child_idx",
+          "using": "btree",
         },
       ],
       "name": "metalize_schema.users",

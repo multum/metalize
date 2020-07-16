@@ -67,11 +67,13 @@ exports.setup = ({ schema, dialect, onGotAdditionalBlocks = () => null }) => {
             references ${quotedChildTable} (parent, id) on update restrict on delete cascade,
           constraint ${constraintNames.unique} unique (name, age)
         );`,
-      `create index index_name on ${quotedTable} (id, child);`,
+      `create index id_child_idx on ${quotedTable} (id, child);`,
     ];
 
     if (isPostgres) {
       queries.push(
+        `alter table ${quotedTable} add column ts_vector tsvector`,
+        `create index ts_vector_idx on ${quotedTable} using gin (ts_vector);`,
         `alter table ${quotedTable} add constraint ${constraintNames.check} check (age > 21)`,
         `alter table ${quotedTable} alter column age add generated always as identity ( start 100 minvalue 100 maxvalue 9999 no cycle increment 5 )`,
         `drop sequence if exists ${quotedSequence};`,
