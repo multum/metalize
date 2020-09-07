@@ -8,7 +8,7 @@
 
 <p align='center'>
   <img src='https://github.com/multum/metalize/workflows/Lint%20and%20test/badge.svg' alt=''/>
-  <a href='https://github.com/multum/metalize/blob/master/LICENSE'><img src='https://img.shields.io/npm/l/metalize.svg?style=flat' alt=''></a>
+  <a href='https://github.com/multum/metalize/blob/main/LICENSE'><img src='https://img.shields.io/npm/l/metalize.svg?style=flat' alt=''></a>
   <a href='https://www.npmjs.com/package/metalize'><img src='https://img.shields.io/npm/v/metalize.svg?style=flat' alt=''></a>
   <img src='https://img.shields.io/codecov/c/github/multum/metalize.svg?style=flat' alt=''>
 </p>
@@ -29,7 +29,7 @@
 ## Documentation
 
 - [Documentation](https://multum.github.io/metalize/#/)
-- [Contributing](https://github.com/multum/metalize/blob/master/CONTRIBUTING.md)
+- [Contributing](https://github.com/multum/metalize/blob/main/CONTRIBUTING.md)
 
 ## Getting Started
 
@@ -122,4 +122,4 @@ metalize
 
 ## License
 
-**Metalize** is open source software [licensed as MIT](https://github.com/multum/metalize/blob/master/LICENSE).
+**Metalize** is open source software [licensed as MIT](https://github.com/multum/metalize/blob/main/LICENSE).
